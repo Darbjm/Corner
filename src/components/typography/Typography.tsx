@@ -1,17 +1,19 @@
 import React from 'react';
-import {Variant} from './typographyVariants';
-import {TextAlign, variantTagMap} from './Typography.style';
+import {components, TextAlign, Variant} from './Typography.style';
 
 export interface Props {
   variant: Variant;
   children: string | number;
-  textAlign?: TextAlign;
+  target?: '_blank';
+  href?: string;
+  align?: TextAlign;
+  color?: 'primary';
 }
 
-function Typography({textAlign, variant, children}: Props): JSX.Element {
-  const Component = variantTagMap[variant];
+function Typography({variant, children, ...props}: Props): JSX.Element {
+  const Component: any = variant && components[variant];
 
-  return <Component>{children}</Component>;
+  return <Component {...props}>{children}</Component>;
 }
 
 export default Typography;

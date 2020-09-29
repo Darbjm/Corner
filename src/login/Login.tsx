@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, FormEvent} from 'react';
 import SimpleCard from '../components/card';
 import Typography from '../components/typography';
 import StandardTextField from '../components/textField';
@@ -11,7 +11,8 @@ function Login() {
     Password: '',
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log(details);
   };
 
@@ -24,10 +25,10 @@ function Login() {
 
   return (
     <SimpleCard>
-      <Typography variant="h1" color="primary">
+      <Typography variant="h1" color="secondary">
         Login
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}>
         <div className="field">
           <div className="control">
             <StandardTextField
@@ -48,8 +49,11 @@ function Login() {
               type="password"
             />
           </div>
-          <SimpleButton onClick={handleSubmit}>Login</SimpleButton>
         </div>
+        <br />
+        <SimpleButton buttonSize="large" isFullWidth={true} color="secondary">
+          Login
+        </SimpleButton>
       </form>
     </SimpleCard>
   );

@@ -1,22 +1,32 @@
-import {PRIMARY, LIGHT_PRIMARY, SECONDARY, LIGHT_SECONDARY} from './Colors';
+import * as COLORS from './Colors';
 
 export interface ColorType {
+  main: string;
+  contrastText: string;
   active: string;
   focus: string;
   hover: string;
 }
 
-const themePrimary: ColorType = {
-  active: PRIMARY,
-  focus: LIGHT_PRIMARY,
-  hover: LIGHT_PRIMARY,
+export type ColorTypeKey = 'primary' | 'secondary';
+
+export const primary: ColorType = {
+  main: COLORS.PRIMARY,
+  contrastText: COLORS.SECONDARY,
+  active: COLORS.PRIMARY,
+  focus: COLORS.LIGHT_PRIMARY,
+  hover: COLORS.LIGHT_PRIMARY,
 };
 
-const themeSecondary: ColorType = {
-  active: SECONDARY,
-  focus: LIGHT_SECONDARY,
-  hover: LIGHT_SECONDARY,
+export const secondary: ColorType = {
+  main: COLORS.SECONDARY,
+  contrastText: COLORS.WHITE,
+  active: COLORS.SECONDARY,
+  focus: COLORS.LIGHT_SECONDARY,
+  hover: COLORS.LIGHT_SECONDARY,
 };
 
-export {themePrimary};
-export {themeSecondary};
+export const colors: any = {
+  primary,
+  secondary,
+};

@@ -1,13 +1,14 @@
 import React from 'react';
 import {components, TextAlign, Variant} from './Typography.style';
+import {ColorTypeKey} from '../../styles/theme';
 
 export interface Props {
   variant: Variant;
-  children: string | number;
+  children: string | number | JSX.Element | JSX.Element[];
   target?: '_blank';
   href?: string;
   align?: TextAlign;
-  color?: 'primary';
+  color?: ColorTypeKey;
 }
 
 function Typography({variant, children, ...props}: Props): JSX.Element {

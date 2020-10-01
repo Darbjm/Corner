@@ -6,7 +6,7 @@ export interface Props {
   elName: string;
   value?: string;
   help?: string;
-  error?: boolean | undefined;
+  error?: boolean;
   type?: 'password';
 }
 
@@ -17,7 +17,7 @@ function StandardTextField({elName, onChange, ...props}: Props): JSX.Element {
   };
   return (
     <TextField
-      helperText={props.help && props.help}
+      helperText={props.help ? props.help : ''}
       error={props.error}
       label={elName}
       name={elName}

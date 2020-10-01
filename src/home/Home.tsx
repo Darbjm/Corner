@@ -3,17 +3,19 @@ import axios from 'axios';
 import SimpleCard from '../components/card';
 import {useDispatch, useSelector} from 'react-redux';
 import {UserState} from '../redux/userReducer';
+import {addUser} from '../redux/actions';
+import Typography from '../components/typography';
 
 function Home() {
   const dispatch = useDispatch();
+  const profile = useSelector<UserState, any>(state => state.user);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const res = await axios.get('https://jsonplaceholder.typicode.com/users');
         const user = res.data[0];
-        console.log(user);
-        dispatch({type: 'ADD_USER', payload: user});
+        dispatch(addUser(user));
       } catch (err) {
         console.log(err);
       }
@@ -21,11 +23,10 @@ function Home() {
     getData();
   }, []);
 
-  const profile = useSelector<UserState>(state => state.user);
-
+  console.log(profile);
   return (
     <SimpleCard>
-      <div>{profile}</div>
+      {profile.action ? <Typography variant="h2">{profile.action.payload.name}</Typography> : ''}
     </SimpleCard>
   );
 }

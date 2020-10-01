@@ -21,7 +21,7 @@ export const components = {
     line-height: 1.25;
     margin: 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   h2: styled.h2<{align: string; color: ColorTypeKey}>`
     font-size: 24px;
@@ -29,7 +29,7 @@ export const components = {
     line-height: 1.25;
     margin: 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   h4: styled.h4<{align: string; color: ColorTypeKey}>`
     font-size: 24px;
@@ -37,7 +37,7 @@ export const components = {
     line-height: 1.25;
     margin: 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodyMedium: styled.p<{align: string; color: ColorTypeKey}>`
     font-size: 14px;
@@ -45,7 +45,7 @@ export const components = {
     line-height: 1.5;
     margin: 10px 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodySmall: styled.p<{align: string; color: ColorTypeKey}>`
     font-size: 13px;
@@ -53,7 +53,7 @@ export const components = {
     line-height: 1.5;
     margin: 5px 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodyLarge: styled.p<{align: string; color: ColorTypeKey}>`
     font-size: 18px;
@@ -61,7 +61,7 @@ export const components = {
     line-height: 1.5;
     margin: 10px 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   caption: styled.span<{align: string; color: ColorTypeKey}>`
     font-size: 10px;
@@ -69,7 +69,7 @@ export const components = {
     line-height: 1.5;
     margin: 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
   Link: styled.a<{align: string; color: ColorTypeKey}>`
     font-size: 10px;
@@ -77,7 +77,7 @@ export const components = {
     line-height: 1.5;
     margin: 0;
     color: ${props => setColor(props.color)};
-    text-align: ${props => props.align && props.align};
+    text-align: ${props => (props.align ? props.align : 'left')};
   `,
 };
 

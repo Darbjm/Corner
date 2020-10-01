@@ -1,17 +1,21 @@
+import {Action} from './actions';
+
 export interface UserState {
-  user: object;
+  [key: string]: any;
 }
 
 const initialState = {
-  user: {},
+  user: {
+    id: null,
+    name: '',
+    username: '',
+    address: {},
+  },
 };
-
-type Action = {type: 'ADD_USER'; payload: object};
 
 export const userReducer = (state: UserState = initialState, action: Action) => {
   switch (action.type) {
     case 'ADD_USER': {
-      console.log(action);
       return {...state, user: {action}};
     }
     default:

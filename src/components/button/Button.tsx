@@ -12,7 +12,7 @@ export interface Props {
   handleClick?: () => void;
 }
 
-function SimpleButton({color, isFullWidth, buttonSize, children, ...props}: Props): JSX.Element {
+const SimpleButton = ({color, isFullWidth, buttonSize, children, ...props}: Props): JSX.Element => {
   const textSize = buttonSize === 'large' ? 'bodyLarge' : 'bodyMedium';
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (props.handleClick) return props.handleClick();
@@ -22,6 +22,6 @@ function SimpleButton({color, isFullWidth, buttonSize, children, ...props}: Prop
       <Typography variant={textSize}>{children}</Typography>
     </Button>
   );
-}
+};
 
 export default SimpleButton;

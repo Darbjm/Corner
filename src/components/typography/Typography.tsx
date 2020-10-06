@@ -11,10 +11,10 @@ export interface Props {
   color?: ColorTypeKey;
 }
 
-function Typography({variant, children, ...props}: Props): JSX.Element {
+const Typography = ({variant, children, ...props}: Props): JSX.Element => {
   const Component: any = variant && components[variant];
 
   return <Component {...props}>{children}</Component>;
-}
+};
 
 export default Typography;

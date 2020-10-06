@@ -10,7 +10,7 @@ export interface Props {
   type?: 'password';
 }
 
-function StandardTextField({elName, onChange, ...props}: Props): JSX.Element {
+const StandardTextField = ({elName, onChange, ...props}: Props): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     onChange(elName, e.target.value);
@@ -26,6 +26,6 @@ function StandardTextField({elName, onChange, ...props}: Props): JSX.Element {
       type={props.type}
     />
   );
-}
+};
 
 export default StandardTextField;

@@ -6,7 +6,7 @@ import {UserState} from '../redux/userReducer';
 import {addUser} from '../redux/actions';
 import Typography from '../components/typography';
 
-function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const profile = useSelector<UserState, any>(state => state.user);
 
@@ -29,7 +29,7 @@ function Home() {
       {profile.action ? <Typography variant="h2">{profile.action.payload.name}</Typography> : ''}
     </SimpleCard>
   );
-}
+};
 
 export default Home;
 

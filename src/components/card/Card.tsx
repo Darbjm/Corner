@@ -18,12 +18,12 @@ const useStyles = makeStyles({
   },
 });
 
-function SimpleCard({children}: Props): JSX.Element {
+const SimpleCard = ({children}: Props): JSX.Element => {
   return (
     <Card className={useStyles().root}>
       <CardContent>{children}</CardContent>
     </Card>
   );
-}
+};
 
 export default SimpleCard;

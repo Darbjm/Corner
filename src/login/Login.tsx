@@ -4,7 +4,7 @@ import Typography from '../components/typography';
 import StandardTextField from '../components/textField';
 import SimpleButton from '../components/button';
 
-function Login() {
+const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [details, setDetails] = useState({
     Username: '',
@@ -57,6 +57,6 @@ function Login() {
       </form>
     </SimpleCard>
   );
-}
+};
 
 export default Login;

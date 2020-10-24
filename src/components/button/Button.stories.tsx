@@ -15,15 +15,16 @@ const buttonTypes: {[K in ColorTypeKey]: string} = {
 export const AllColours = () => {
   return (
     <>
-      {/* @ts-ignore */}
-      {Object.keys(buttonTypes).map((key: ColorTypeKey) => (
-        <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key={key}>
-          <Button color={key} buttonSize="medium" isFullWidth={false}>
+        <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
+          <Button color='primary' buttonSize="medium" isFullWidth={false}>
+            Medium
+          </Button>
+          <div style={{width: 10}} />
+          <Button color='secondary' buttonSize="medium" isFullWidth={false}>
             Medium
           </Button>
           <div style={{width: 10}} />
         </div>
-      ))}
     </>
   );
 };

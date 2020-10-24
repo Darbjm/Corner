@@ -64,18 +64,19 @@ export const components = {
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   caption: styled.span<{align: string; color: ColorTypeKey}>`
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  Link: styled.a<{align: string; color: ColorTypeKey}>`
-    font-size: 10px;
+  link: styled.a<{align: string; color: ColorTypeKey}>`
+    font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
     margin: 0;
+    text-decoration: underline;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
@@ -93,5 +94,5 @@ export const variantTagMap: {[K in Variant]: Tag} = {
   h2: 'h2',
   h4: 'h4',
   caption: 'span',
-  Link: 'a',
+  link: 'a',
 };

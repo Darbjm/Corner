@@ -1,6 +1,7 @@
 import React from 'react';
 import {components, TextAlign, Variant} from './Typography.style';
 import {ColorTypeKey} from '../../styles/theme';
+import '../../styles/Font.css'
 
 export interface Props {
   variant: Variant;
@@ -14,7 +15,7 @@ export interface Props {
 const Typography = ({variant, children, ...props}: Props): JSX.Element => {
   const Component: any = variant && components[variant];
 
-  return <Component {...props}>{children}</Component>;
+  return <Component {...props}>{children}</Component>
 };
 
 export default Typography;

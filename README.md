@@ -1,11 +1,11 @@
 # <img src='readme/Temp.png' width='200'>
 
 <h1>Freelance Project: Corner !!Currently Under contruction!!</h1>
-
-<h2>Problem: People want more say in what their local stores supply, local stores want better research on this.</h2>
-
+ 
+<h2>Problem: People want more say in what their local store’s supply, local stores want better research on this.</h2>
+ 
 <h2>Solution: Build a web app that allows users to vote on food goods for their local area, and allow local stores to access this data.</h2>
-
+ 
 <!-- | Contents                      |                                |
 | ----------------------------- | ------------------------------ |
 | 1. [Overview](#overview)      | 6. [Future content](#future)   |
@@ -13,39 +13,41 @@
 | 3. [Technologies used](#tech) | 8. [Blockers](#blockers)       |
 | 4. [App](#app)                | 9. [Bugs](#bugs)               |
 | 5. [Approach](#approach)      | 10. [Future learnings](#learn) | -->
-
+ 
 <h2 name='overview'>Overview</h2>
-
+ 
 <h3>Introduction</h3>
-
-Myself and a friend recognised that there was a need to improve the way people voiced their desires
+ 
+I and a friend recognised that there was a need to improve the way people voiced their desires
 for food goods. We believe this could help local stores increase their sales while catering to areas
 that wanted different foods such as carbon balanced foods.
-
+ 
 <!-- <h3>Deployment</h3>
-
+ 
 The app is deployed on Heroku and can be found here: https://wordee-app.herokuapp.com <br> The login
 details are email: test@email password: pass <br> -->
-
+ 
 <h2 name='brief'>Brief</h2>
-
+ 
 - **Build a voting system** Create a web app that allows users to vote on certain foods and local
-  stores to see this
-- **Have a map** The map should display the votes for foods in in area codes
+ stores to see this
+- **Have a map** The map should display the votes for foods in area codes
 - **Local stores should be able to create profiles** and show if they have desired good.
 - **Have a simple design**
 - **Be deployed online**
-
+ 
 <h2 name='tech'>Technologies used and why?</h2>
-
+ 
 I am still currently building this however I am using:
-
-<strong>TypeScript<strong> because it stops simple bugs creeping in, speeding up development
-<strong>Storybook<strong> because it's easy to check, test and share UI components with my colleague
-<strong>Redux<strong> because it allows me to make one request for the user meaning it is faster
+ 
+<strong>TypeScript<strong> because it stops simple bugs creeping in, speeding up development<br>
+<strong>GraphQL<strong> because I’ll be using an external API and don't want to bring through unnecessary data that will slow my app<br>
+<strong>Storybook<strong> because it's easy to check, test and share UI components with my colleague<br>
+<strong>Redux<strong> because it allows me to make one request for the user meaning it is faster<br>
 <strong>Atomic Design<strong> because it makes my project easier to manage, keep brand consistency,
-and bring on other engineers later on <strong>Django<strong> because it is quick and easy to setup
-with pre built features I can use
+and bring on other engineers, later on, <br>
+<strong>Django<strong> because it is quick and easy to set up with and has pre-built features I can use<br>
+
 
 <!-- <p>1. HTML5 <br>
 2. SCSS & Bulma <br>

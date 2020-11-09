@@ -1,44 +1,136 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# <img src='readme/Temp.png' width='200'>
 
-## Available Scripts
+<h1>Freelance Project: Corner !!Currently Under contruction!!</h1>
 
-In the project directory, you can run:
+<h2>Problem: People want more say in what their local stores supply, local stores want better research on this.</h2>
 
-### `yarn start`
+<h2>Solution: Build a web app that allows users to vote on food goods for their local area, and allow local stores to access this data.</h2>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- | Contents                      |                                |
+| ----------------------------- | ------------------------------ |
+| 1. [Overview](#overview)      | 6. [Future content](#future)   |
+| 2. [Brief](#brief)            | 7. [Wins](#wins)               |
+| 3. [Technologies used](#tech) | 8. [Blockers](#blockers)       |
+| 4. [App](#app)                | 9. [Bugs](#bugs)               |
+| 5. [Approach](#approach)      | 10. [Future learnings](#learn) | -->
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<h2 name='overview'>Overview</h2>
 
-### `yarn test`
+<h3>Introduction</h3>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Myself and a friend recognised that there was a need to improve the way people voiced their desires
+for food goods. We believe this could help local stores increase their sales while catering to areas
+that wanted different foods such as carbon balanced foods.
 
-### `yarn build`
+<!-- <h3>Deployment</h3>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app is deployed on Heroku and can be found here: https://wordee-app.herokuapp.com <br> The login
+details are email: test@email password: pass <br> -->
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<h2 name='brief'>Brief</h2>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Build a voting system** Create a web app that allows users to vote on certain foods and local
+  stores to see this
+- **Have a map** The map should display the votes for foods in in area codes
+- **Writers must be access files** use external hosting for files and images
+- **Have a simple design**
+- **Be deployed online**
 
-### `yarn eject`
+<h2 name='tech'>Technologies used and why?</h2>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I used <strong>GraphQL</strong> to reduce the amount of work the server had to do to reduce
+latency.<br> I used <strong>Heroku</strong> because it comes ready to use with very little
+configuration compared to aws. If the project scales I will change to aws due to price concerns.<br>
+I used <strong>Firebox</strong> because like Heroku its a quick and simple setup to manage files and
+allows others to access those files via url.<br> I used <strong>CircleCI</strong> because I wanted
+to check every branch was being checked incase it broke my tests.<br> I used <strong>React</strong>
+because needed the brief form to be able to react and change quickly to the users imputs.<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p>1. HTML5 <br>
+2. SCSS & Bulma <br>
+3. JavaScript (ES6) <br>
+4. Redux <br>
+5. GraphQL <br>
+6. Mocha <br>
+7. Chai <br>
+8. Express <br>
+9. React.js <br>
+11. Node.js <br>
+12. Axios <br>
+13. Jest <br>
+14. Insomnia <br>
+15. Dotenv <br>
+16. Cloudinary <br>
+17. Firebox <br>
+18. CircleCI <br>
+19. JWT <br>
+20. Yarn <br>
+21. Heroku <br>
+22. GitHub <br></p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<!-- <h2 name='app'>App</h2>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The brand will log into the app will immediately be able to edit their supporting data that will be
+sent to copy writers along with their briefs.The brand will be sent a report summary it can access
+as soon as we have sent it.<br> <br> <br> <img src='readme/1.gif' width='600'> <br> <br> <br>
+Creating a brief is made simple by asking the brand to fill out a set of questions my colleagues
+thought essentially to fully explain what is needed. The brief reacts to choices made adds or
+removes questions accordingly.<br> <br> <br> <img src='readme/2.gif' width='600'> <br> <br> <br> The
+brand can easily edit the brief just by clicking on its list item.<br> <br> <br>
+<img src='readme/3.gif' width='600'> <br> <br> <br> The brand can easily change or remove their
+information.<br> <br> <br> <img src='readme/4.gif' width='600'> <br> <br> <br> On the backend my
+colleagues and I are able to view brands and their information and can easily edit report summarys,
+download briefs to excel, and view images and files.<br> <br> <br>
+<img src='readme/5.gif' width='600'>
 
-## Learn More
+<h2 name='approach'>Approach</h2>
+My approach was to always keep the user in mind when I made every decisions, for instance my first instinct was to make a profile page and an edit profile page. However I believe this gave the experiance needless friction for the user. Therefore these pages could be combined for easy and fast manipulation. This eneded making my code more simple too.
+<br>
+<br>
+<h2 name='future'>Future content</h2>
+<h3>A writers portal</h3>
+We were discussing creating a writers portal and profile and I have some code commented out in the login component should we build this. However we don't currently see any use for this<br>
+<br>
+<br>
+<h3>Email alert system</h3>
+We would like to be alerted by email if a user updates their information or edits a brief so we could send the new data to any writers who need it.<br>
+<br>
+<br>
+<h2 name='wins'>Wins</h2>
+<h3>Tested by TRIP DRINKS</h3>
+[TRIP DRINKS](https://www.drink-trip.com/) Tested our app and found it very useful saying it was functional and well designed. TRIP is still using it and we are arranging user testing.
+<br>
+<br>
+<h3>GaphQL</h3>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
+<br>
+<h3>Redux</h3>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
+<br>
+<h3>Design</h3>
+I'm personally very happy with the design, I think it looks good and is easy to use. Getting feedback from users like TRIP saying "it's functional and well designed"
+<br>
+<br>
+<h2 name='blockers'>Blockers</h2>
+<h3>COVID-19</h3>
+Due to the pandemic we are having to pause development due to this being a side project for my colleagues.
+<br>
+<br>
+<h3>CircleCI</h3>
+I seem to behaving trouble getting the backend up and therefore test it in CircleCI. I have emailed them asking for support.
+<br>
+<br>
+<img src='readme/circle.png' width='600'>
+<br>
+<br>
+<br>
+<h2 name='bugs'>Bugs</h2>
+<h3>Brand images</h3>
+Sometimes when uploading brand images the images may not appear on the brand profile until the page is reloaded. I checked to see if the getData function was waiting until the upload to the backend had been completed and it was.<br>
+<br>
+<br>
+<h2 name='learn'>Future learnings</h2>
+• Use TypeScript to better avoid bugs like merging objects and arrays.<br>
+• Use Storybook to test UI components.<br> -->

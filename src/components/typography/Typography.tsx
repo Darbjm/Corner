@@ -12,10 +12,10 @@ export interface Props {
   color?: ColorTypeKey;
 }
 
-const Typography = ({variant, children, ...props}: Props): JSX.Element => {
+const Typography = ({variant, children, href, ...props}: Props): JSX.Element => {
   const Component: any = variant && components[variant];
 
-  return <Component {...props}>{children}</Component>
+  return <Component {...props} href={href} target="_blank">{children}</Component>
 };
 
 export default Typography;

@@ -13,7 +13,7 @@ export const Variant = () => {
       <Typography variant='caption'>Caption</Typography>
     </div>
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <Typography variant='link'>Link</Typography>
+      <Typography variant='link' href='https://www.google.com/'>Link</Typography>
     </div>
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
       <Typography variant='bodySmall'>Body Small</Typography>

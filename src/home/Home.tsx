@@ -13,6 +13,7 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       try {
+        // use https://spoonacular.com/ for foods
         const res = await axios.get('https://jsonplaceholder.typicode.com/users');
         const user = res.data[0];
         dispatch(addUser(user));

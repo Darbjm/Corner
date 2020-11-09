@@ -32,21 +32,22 @@ details are email: test@email password: pass <br> -->
 - **Build a voting system** Create a web app that allows users to vote on certain foods and local
   stores to see this
 - **Have a map** The map should display the votes for foods in in area codes
-- **Writers must be access files** use external hosting for files and images
+- **Local stores should be able to create profiles** and show if they have desired good.
 - **Have a simple design**
 - **Be deployed online**
 
 <h2 name='tech'>Technologies used and why?</h2>
 
-I used <strong>GraphQL</strong> to reduce the amount of work the server had to do to reduce
-latency.<br> I used <strong>Heroku</strong> because it comes ready to use with very little
-configuration compared to aws. If the project scales I will change to aws due to price concerns.<br>
-I used <strong>Firebox</strong> because like Heroku its a quick and simple setup to manage files and
-allows others to access those files via url.<br> I used <strong>CircleCI</strong> because I wanted
-to check every branch was being checked incase it broke my tests.<br> I used <strong>React</strong>
-because needed the brief form to be able to react and change quickly to the users imputs.<br>
+I am still currently building this however I am using:
 
-<p>1. HTML5 <br>
+<strong>TypeScript<strong> because it stops simple bugs creeping in, speeding up development
+<strong>Storybook<strong> because it's easy to check, test and share UI components with my colleague
+<strong>Redux<strong> because it allows me to make one request for the user meaning it is faster
+<strong>Atomic Design<strong> because it makes my project easier to manage, keep brand consistency,
+and bring on other engineers later on <strong>Django<strong> because it is quick and easy to setup
+with pre built features I can use
+
+<!-- <p>1. HTML5 <br>
 2. SCSS & Bulma <br>
 3. JavaScript (ES6) <br>
 4. Redux <br>
@@ -66,7 +67,7 @@ because needed the brief form to be able to react and change quickly to the user
 19. JWT <br>
 20. Yarn <br>
 21. Heroku <br>
-22. GitHub <br></p>
+22. GitHub <br></p> -->
 
 <!-- <h2 name='app'>App</h2>
 

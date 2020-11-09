@@ -1,6 +1,6 @@
 # <img src='readme/Temp.png' width='200'>
 
-<h1>Freelance Project: Corner !!Currently Under contruction!!</h1>
+<h1>!!UNDER CONSTRUCTION!! Freelance Project: Corner</h1>
  
 <h2>Problem: People want more say in what their local store’s supply, local stores want better research on this.</h2>
  

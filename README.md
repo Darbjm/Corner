@@ -40,14 +40,13 @@ details are email: test@email password: pass <br> -->
  
 I am still currently building this however I am using:
  
-<strong>TypeScript<strong> because it stops simple bugs creeping in, speeding up development<br>
-<strong>GraphQL<strong> because I’ll be using an external API and don't want to bring through unnecessary data that will slow my app<br>
-<strong>Storybook<strong> because it's easy to check, test and share UI components with my colleague<br>
-<strong>Redux<strong> because it allows me to make one request for the user meaning it is faster<br>
-<strong>Atomic Design<strong> because it makes my project easier to manage, keep brand consistency,
+<strong>TypeScript</strong> because it stops simple bugs creeping in, speeding up development<br>
+<strong>GraphQL</strong> because I’ll be using an external API and don't want to bring through unnecessary data that will slow my app<br>
+<strong>Storybook</strong> because it's easy to check, test and share UI components with my colleague<br>
+<strong>Redux</strong> because it allows me to make one request for the user meaning it is faster<br>
+<strong>Atomic Design</strong> because it makes my project easier to manage, keep brand consistency,
 and bring on other engineers, later on, <br>
-<strong>Django<strong> because it is quick and easy to set up with and has pre-built features I can use<br>
-
+<strong>Django</strong> because it is quick and easy to set up with and has pre-built features I can use<br>
 
 <!-- <p>1. HTML5 <br>
 2. SCSS & Bulma <br>

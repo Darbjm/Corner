@@ -1,0 +1,6 @@
+{
+  "python.formatting.provider": "autopep8",
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.pythonPath": "/Users/Jamesdarby/.local/share/virtualenvs/Corner-b60IVPoj/bin/python"
+}

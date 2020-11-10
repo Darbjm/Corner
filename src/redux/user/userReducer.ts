@@ -1,4 +1,4 @@
-import {Action} from './actions';
+import { Action } from './actions';
 
 export interface UserState {
   [key: string]: any;
@@ -15,8 +15,9 @@ const initialState = {
 
 export const userReducer = (state: UserState = initialState, action: Action) => {
   switch (action.type) {
-    case 'ADD_USER': {
-      return {...state, user: {action}};
+    case 'ADD_USER': return {
+      ...state,
+      user: action.payload
     }
     default:
       return state;

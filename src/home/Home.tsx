@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import axios from 'axios';
 import SimpleCard from '../components/card';
 import {useDispatch, useSelector} from 'react-redux';
-import {UserState} from '../redux/userReducer';
-import {addUser} from '../redux/actions';
+import {UserState} from '../redux/user/userReducer';
+import {addUser} from '../redux';
 import Typography from '../components/typography';
 
 const Home = () => {
@@ -24,12 +24,11 @@ const Home = () => {
     getData();
   }, []);
 
-  console.log(profile);
-  return (
+  return profile.name ? (
     <SimpleCard>
-      {profile.action ? <Typography variant="h2">{profile.action.payload.name}</Typography> : ''}
+      <Typography variant="h2">{profile.name}</Typography>
     </SimpleCard>
-  );
+  ) : null
 };
 
 export default Home;

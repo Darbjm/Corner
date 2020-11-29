@@ -1,11 +1,10 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
-class Consumer(models.Model):
-    username = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+class Consumer(AbstractUser):
+
     password = models.CharField(max_length=50)
     areacode = models.CharField(max_length=15)
 

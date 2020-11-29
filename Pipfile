@@ -10,6 +10,7 @@ pylint = "*"
 django = "==2.2.9"
 autopep8 = "*"
 djangorestframework = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"

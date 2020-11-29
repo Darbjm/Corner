@@ -7,6 +7,7 @@ from .views import RegisterView
 class BaseTest(TestCase):
     def setUp(self):
         self.register_url = reverse('register')
+        self.login_url = reverse('login')
         self.user_data = {
             'username': 'test',
             'areacode': 'SE1',
@@ -75,3 +76,11 @@ class RegisterTest(BaseTest):
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
             str(response.data['areacode'][0]), 'This field may not be blank.')
+
+
+class LoginTest(BaseTest):
+    def test_can_login(self):
+        self.client.post(self.register_url, self.user_data)
+        response = self.client.post(self.login_url, self.user_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual()

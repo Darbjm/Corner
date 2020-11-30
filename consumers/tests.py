@@ -83,4 +83,17 @@ class LoginTest(BaseTest):
         self.client.post(self.register_url, self.user_data)
         response = self.client.post(self.login_url, self.user_data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual()
+        self.assertEqual(type(response.data['token']), bytes)
+        username = self.user_data['username']
+        self.assertEqual(response.data['message'], f'Welcome back {username}')
+
+    def test_cannot_login_before_registration(self):
+        response = self.client.post(self.login_url, self.user_data)
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.data['message'], 'Invalid Credentials')
+
+    def test_cannot_login_with_wrong_password(self):
+        self.client.post(self.register_url, self.user_data)
+        response = self.client.post(self.login_url, self.simple_password)
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.data['message'], 'Invalid Credentials')

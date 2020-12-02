@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_202_ACCEPTED, HTTP_401_UNAUTHORIZED, HTTP_204_NO_CONTENT
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
 import jwt
@@ -10,6 +10,8 @@ from .serializers import UserSerializer, NestedUserSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
+NOT_FOUND = {'message': 'Not Found'}
 
 
 class RegisterView(APIView):
@@ -52,5 +54,33 @@ class UserDetailView(APIView):
             user = User.objects.get(pk=pk)
             serialized_user = NestedUserSerializer(user)
             return Response(serialized_user.data)
+        except User.DoesNotExist:
+            return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
+
+
+class UserEditView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request, pk):
+        user = User.objects.get(pk=pk)
+        try:
+            if user.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
+            updated_user = NestedUserSerializer(user, data=request.data)
+            if updated_user.is_valid():
+                updated_user.save()
+                return Response(updated_user.data, status=HTTP_202_ACCEPTED)
+            return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+        except User.DoesNotExist:
+            return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
+
+    def delete(self, request, pk):
+        user = User.objects.get(pk=pk)
+        try:
+            if user.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
+            user.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
         except User.DoesNotExist:
             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)

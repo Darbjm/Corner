@@ -33,9 +33,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class NestedUserSerializer(serializers.ModelSerializer):
-#     trips = TripSerializer(many=True, required=False)
+class NestedUserSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'email', 'image', 'trips', 'bio')
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'areacode')

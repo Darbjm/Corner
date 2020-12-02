@@ -2,10 +2,11 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND
 from django.conf import settings
+from rest_framework.permissions import IsAuthenticated
 import jwt
-from .serializers import UserSerializer
+from .serializers import UserSerializer, NestedUserSerializer
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -36,7 +37,20 @@ class LoginView(APIView):
                 raise PermissionDenied({'message': 'Invalid Credentials'})
             dt = datetime.now() + timedelta(days=7)
             token = jwt.encode({'sub': user.id, 'exp': int(
-                dt.strftime('%s'))}, settings.SECRET_KEY, algorithm='HS256')
+                dt.strftime('%s'))}, settings.SECRET_KEY, algorithm='HS256').decode('utf-8')
             return Response({'token': token, 'message': f'Welcome back {user.username}'})
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'Invalid Credentials'})
+
+
+class UserDetailView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, _request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            serialized_user = NestedUserSerializer(user)
+            return Response(serialized_user.data)
+        except User.DoesNotExist:
+            return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)

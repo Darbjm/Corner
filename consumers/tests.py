@@ -82,6 +82,8 @@ class RegisterTest(APITestCase):
         self.assertEqual(
             str(response.data['areacode'][0]), 'This field may not be blank.')
 
+# Unsure whether these are intergration tests - need research
+
 
 class LoginTest(APITestCase):
 

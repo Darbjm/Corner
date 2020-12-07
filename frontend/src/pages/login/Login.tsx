@@ -1,8 +1,8 @@
-import React, {useState, FormEvent} from 'react';
-import SimpleCard from '../components/card';
-import Typography from '../components/typography';
-import StandardTextField from '../components/textField';
-import SimpleButton from '../components/button';
+import React, { useState, FormEvent } from 'react';
+import SimpleCard from '../../components/card';
+import Typography from '../../components/typography';
+import StandardTextField from '../../components/textField';
+import SimpleButton from '../../components/button';
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');

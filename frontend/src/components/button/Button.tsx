@@ -9,16 +9,17 @@ export interface Props {
   buttonSize: Size;
   color: ColorTypeKey;
   isFullWidth: boolean;
+  disabled?: boolean;
   handleClick?: () => void;
 }
 
-const SimpleButton = ({color, isFullWidth, buttonSize, children, ...props}: Props): JSX.Element => {
+const SimpleButton = ({color, isFullWidth, buttonSize, children, disabled, ...props}: Props): JSX.Element => {
   const textSize = buttonSize === 'large' ? 'bodyLarge' : 'bodyMedium';
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (props.handleClick) return props.handleClick();
   };
   return (
-    <Button size={buttonSize} fullWidth={isFullWidth} colorType={color} onClick={handleClick}>
+    <Button size={buttonSize} fullWidth={isFullWidth} colorType={color} onClick={handleClick} disabled={disabled}>
       <Typography variant={textSize}>{children}</Typography>
     </Button>
   );

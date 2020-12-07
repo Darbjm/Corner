@@ -1,8 +1,8 @@
 import React from 'react';
-import SimpleCard from '../components/card';
-import Typography from '../components/typography';
+import SimpleCard from '../../components/card';
+import Typography from '../../components/typography';
 
-function Swipe() {
+const Swipe = () => {
   return (
     <SimpleCard>
       <Typography variant="h4" color="primary">

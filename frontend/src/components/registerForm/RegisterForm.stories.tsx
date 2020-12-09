@@ -7,7 +7,7 @@ export default {
   component: RegisterForm,
 };
 
-export const Simple = () => {
+export const Form = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
       <RegisterForm />
@@ -15,6 +15,6 @@ export const Simple = () => {
   );
 };
 
-Simple.story = {
-  name: 'Simple Card',
+Form.story = {
+  name: 'Register form',
 };

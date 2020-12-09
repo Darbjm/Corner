@@ -7,7 +7,9 @@ export interface Props {
   value?: string;
   help?: string;
   error?: boolean;
-  type?: 'password';
+  type?: string;
+  placeholder?: string;
+  name?: string;
 }
 
 const StandardTextField = ({elName, onChange, ...props}: Props): JSX.Element => {

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Consumer(Models.models):
+class Food(Models.models):
 
     api_id = models.CharField(max_length=50)
     title = models.CharField(max_length=500)

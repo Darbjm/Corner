@@ -1,3 +1,4 @@
+# pylint: disable=no-member
 from django.db import models
 
 class Food(models.Models):
@@ -14,26 +15,26 @@ class Food(models.Models):
     price = models.CharField(max_length=500)
 
 class ingredients(models.Models):
-    Food = models.ForeignKey(User, related_name='Food', on_delete=models.CASCADE)
+    Food = models.ForeignKey(Food, related_name='Food', on_delete=models.CASCADE)
     description = models.CharField(max_length=1000)
     name = models.CharField(max_length=1000)
     safety_level = models.CharField(max_length=1000)
 
-class nutrients(model.Models):
-    Food = models.ForeignKey(User, related_name='Food', on_delete=models.CASCADE)
+class nutrients(models.Models):
+    Food = models.ForeignKey(Food, related_name='Food', on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     amount = models.CharField(max_length=1000)
     unit = models.CharField(max_length=1000)
     percentOfDailyNeeds = models.CharField(max_length=1000)
 
-class caloricBreakdown(model.Models):
-    Food = models.ForeignKey(User, related_name='Food', on_delete=models.CASCADE)
+class caloricBreakdown(models.Models):
+    Food = models.ForeignKey(Food, related_name='Food', on_delete=models.CASCADE)
     percentProtein = models.CharField(max_length=1000)
     percentFat = models.CharField(max_length=1000)
     percentCarbs = models.CharField(max_length=1000)
 
-class servings(model.Models):
-    Food = models.ForeignKey(User, related_name='Food', on_delete=models.CASCADE)
+class servings(models.Models):
+    Food = models.ForeignKey(Food, related_name='Food', on_delete=models.CASCADE)
     number = models.CharField(max_length=1000)
     size = models.CharField(max_length=1000)
     unit = models.CharField(max_length=1000)

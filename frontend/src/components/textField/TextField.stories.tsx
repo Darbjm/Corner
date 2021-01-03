@@ -1,15 +1,16 @@
 import TextField from './TextField';
 import React from 'react';
 
+
 export default {
   title: 'TextField',
   component: TextField,
 };
 
-export const Field = (elName: string ) => {
+export const Field = () => {
   return (
-    <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <TextField elName={"Undefined" || elName} onChange={() => console.log('working')} />
+    <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
+      <TextField elName="Test" onChange={() => console.log('working')} color='primary'/>
     </div>
   );
 };

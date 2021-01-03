@@ -17,6 +17,7 @@ export interface Props {
 const SimpleButton = ({color, isFullWidth, buttonSize, children, disabled, ...props}: Props): JSX.Element => {
   const textSize = buttonSize === 'large' ? 'bodyLarge' : 'bodyMedium';
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     if (props.handleClick) return props.handleClick();
   };
   return (

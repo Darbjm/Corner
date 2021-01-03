@@ -9,9 +9,12 @@ export default {
 
 export const FormS = () => {
   return (
-    <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <Form title='Register' buttonName='Register' buttonColor='primary'>
-        <TextField elName='Username' onChange={() => console.log('working')}/>
+    <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
+      <Form title='Register' buttonName='Register' buttonColor='primary' handleSubmit={() => console.log('working')}>
+        <TextField elName='Username' color='primary' onChange={() => console.log('working')}/>
+        <TextField elName='Area code' color='primary' onChange={() => console.log('working')}/>
+        <TextField elName='Password' color='primary' onChange={() => console.log('working')}/>
+        <TextField elName='Password confirmation' color='primary' onChange={() => console.log('working')}/>
       </Form>
     </div>
   );

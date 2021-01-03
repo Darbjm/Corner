@@ -9,6 +9,7 @@ export interface Props {
   buttonSize: Size;
   color: ColorTypeKey;
   isFullWidth: boolean;
+  type?: 'submit'
   disabled?: boolean;
   handleClick?: () => void;
 }

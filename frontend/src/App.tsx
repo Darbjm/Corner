@@ -4,7 +4,7 @@ import Login from './pages/login';
 import Swipe from './pages/swipe';
 import Home from './pages/home';
 import Register from './pages/register'
-import * as Style from './styles';
+import { Section } from './styles/Components.style';
 
 
 function App() {
@@ -12,12 +12,12 @@ function App() {
     <BrowserRouter>
     <>
       <Switch>
-        <Style.Section>
+        <Section>
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/swipe' component={Swipe} />
             <Route path='/register' component={Register} />
-        </Style.Section>
+        </Section>
       </Switch>
     </>
     </BrowserRouter>

@@ -6,10 +6,10 @@ export default {
   component: TextField,
 };
 
-export const Field = () => {
+export const Field = (elName: string ) => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <TextField elName='test' onChange={() => console.log('working')} />
+      <TextField elName={"Undefined" || elName} onChange={() => console.log('working')} />
     </div>
   );
 };

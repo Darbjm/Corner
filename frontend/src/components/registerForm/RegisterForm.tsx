@@ -3,6 +3,7 @@ import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
 import Button from '../button'
 import TextField from '../textField'
 import Typography from '../typography';
+import { Div } from '../../styles/Components.style'
 
 interface FormValues {
   username: string;
@@ -14,24 +15,27 @@ interface FormValues {
 const InnerForm = (props: FormikProps<FormValues>) => {
   const { touched, errors, isSubmitting } = props;
   return (
-    <Form>
-      <Typography variant='h1'>Register</Typography>
-      <TextField elName='test' onChange={() => console.log('working')}  type="username" name="username" placeholder="username" />
-      {touched.username && errors.username && <Typography variant='caption' color='primary'>{errors.username}</Typography>}
+      <Form>
+        {/* @ts-ignore */}
+        <Div vertical={true}>
+          <Typography variant='h1'>Register</Typography>
+          <TextField elName='Username' onChange={() => console.log('working')}  type="username" name="username" placeholder="username" />
+          {touched.username && errors.username && <Typography variant='caption' color='primary'>{errors.username}</Typography>}
 
-      <TextField elName='test' onChange={() => console.log('working')}  type="areacode" name="areacode" placeholder="areacode"/>
-      {touched.areacode && errors.areacode && <Typography variant='caption' color='primary'>{errors.areacode}</Typography>}
+          <TextField elName='Areacode' onChange={() => console.log('working')}  type="areacode" name="areacode" placeholder="areacode"/>
+          {touched.areacode && errors.areacode && <Typography variant='caption' color='primary'>{errors.areacode}</Typography>}
 
-      <TextField elName='test' onChange={() => console.log('working')}  type="password" name="password" placeholder="password"/>
-      {touched.password && errors.password && <Typography variant='caption' color='primary'>{errors.password}</Typography>}
+          <TextField elName='Password' onChange={() => console.log('working')}  type="password" name="password" placeholder="password"/>
+          {touched.password && errors.password && <Typography variant='caption' color='primary'>{errors.password}</Typography>}
 
-      <TextField elName='test' onChange={() => console.log('working')}  type="password_confirmation" name="password_confirmation" placeholder="password confirmation"/>
-      {touched.password_confirmation && errors.password_confirmation && <Typography variant='caption' color='primary'>{errors.password_confirmation}</Typography>}
+          <TextField elName='Password Confirmation' onChange={() => console.log('working')}  type="password_confirmation" name="password_confirmation" placeholder="password confirmation"/>
+          {touched.password_confirmation && errors.password_confirmation && <Typography variant='caption' color='primary'>{errors.password_confirmation}</Typography>}
 
-      <Button buttonSize='small' color='primary' isFullWidth={false} disabled={isSubmitting}>
-        Submit
-      </Button>
-    </Form>
+          <Button buttonSize='small' color='primary' isFullWidth={false} disabled={isSubmitting}>
+            Submit
+          </Button>
+        </Div>
+      </Form>
   );
 };
 

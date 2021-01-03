@@ -7,3 +7,8 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
 `;
+
+export const Div = styled.div`
+  display: flex;
+  flex-direction: ${props => props.vertical ? "column" : "row"}
+`;

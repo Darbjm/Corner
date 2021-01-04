@@ -6,6 +6,7 @@ import '../../styles/Font.css'
 export interface Props {
   variant: Variant;
   children: string | number | JSX.Element | JSX.Element[];
+  font?: 'header';
   target?: '_blank';
   href?: string;
   align?: TextAlign;

@@ -1,8 +1,1 @@
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../assets/Ubuntu-Medium.ttf');
-}
-
-body {
-  font-family: Ubuntu !important;
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@300&display=swap');

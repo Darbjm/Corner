@@ -15,66 +15,74 @@ const setColor = (color: ColorTypeKey) => {
 };
 
 export const components = {
-  h1: styled.h1<{align: string; color: ColorTypeKey}>`
+  h1: styled.h1<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 32px;
     font-weight: 800;
     line-height: 1.25;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  h2: styled.h2<{align: string; color: ColorTypeKey}>`
+  h2: styled.h2<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  h4: styled.h4<{align: string; color: ColorTypeKey}>`
+  h4: styled.h4<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  bodyMedium: styled.p<{align: string; color: ColorTypeKey}>`
+  bodyMedium: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 10px 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  bodySmall: styled.p<{align: string; color: ColorTypeKey}>`
+  bodySmall: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 13px;
     font-weight: 500;
     line-height: 1.5;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 5px 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  bodyLarge: styled.p<{align: string; color: ColorTypeKey}>`
+  bodyLarge: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 18px;
     font-weight: 500;
     line-height: 1.5;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 10px 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  caption: styled.span<{align: string; color: ColorTypeKey}>`
+  caption: styled.span<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  link: styled.a<{align: string; color: ColorTypeKey}>`
+  link: styled.a<{align: string; color: ColorTypeKey; font: 'header';}>`
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
+    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     text-decoration: underline;
     color: ${props => setColor(props.color)};

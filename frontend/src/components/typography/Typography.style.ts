@@ -15,29 +15,29 @@ const setColor = (color: ColorTypeKey) => {
 };
 
 export const components = {
-  h1: styled.h1<{align: string; color: ColorTypeKey; font: 'header';}>`
+  h1: styled.h1<{align: string; color: ColorTypeKey;}>`
     font-size: 32px;
     font-weight: 800;
     line-height: 1.25;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
+    font-family: 'Playfair Display, serif'
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  h2: styled.h2<{align: string; color: ColorTypeKey; font: 'header';}>`
+  h2: styled.h2<{align: string; color: ColorTypeKey;}>`
     font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
+    font-family: 'Playfair Display, serif'
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  h4: styled.h4<{align: string; color: ColorTypeKey; font: 'header';}>`
+  h4: styled.h4<{align: string; color: ColorTypeKey;}>`
     font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
+    font-family: 'Playfair Display, serif'
     margin: 0;
     color: ${props => setColor(props.color)};
     text-align: ${props => (props.align ? props.align : 'left')};

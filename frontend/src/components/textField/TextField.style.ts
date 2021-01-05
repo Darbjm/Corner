@@ -8,6 +8,7 @@ export const TextFieldn = styled(TextField)`
    }
    && label {
     font-size: 12px;
+    font-family: Raleway, sans-serif;
    }
    && .Mui-focused {
       color: ${({color}): string => color === 'primary' ? `${COLORS.PRIMARY}` : `${COLORS.SECONDARY}`};

@@ -10,7 +10,7 @@ export default {
 export const Simple = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <SimpleCard><Typography variant='bodyMedium'>Card</Typography></SimpleCard>
+      <SimpleCard cardWidth='100px' cardHeight='100px'><Typography variant='bodyMedium'>Card</Typography></SimpleCard>
     </div>
   );
 };

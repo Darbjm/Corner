@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <Card>
+    <Card cardWidth='auto'>
       <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => console.log('working')}>
         <TextField elName='Username' color='primary' onChange={() => console.log('working')} />
         <TextField elName='Password' color='primary' onChange={() => console.log('working')} />

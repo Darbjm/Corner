@@ -22,15 +22,6 @@ body {
   animation: Primary 60s ease infinite;
 }
 
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('./assets/Ubuntu-Medium.ttf');
-}
-
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-} */
-
 #root {
   background-color: #f5f5f5;
   width: 95vw;

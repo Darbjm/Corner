@@ -6,7 +6,7 @@ import TextField from '../../components/textField'
 const Register = () => {
 
   return (
-    <Card>
+    <Card cardWidth='50%'>
       <Form title='Register' buttonName='Submit' buttonColor='primary' handleSubmit={() => console.log('working')}>
         <TextField elName='Username' color='primary' onChange={() => console.log('working')} />
         <TextField elName='Area code' color='primary' onChange={() => console.log('working')} />

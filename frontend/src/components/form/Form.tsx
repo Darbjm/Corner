@@ -17,6 +17,7 @@ const MyForm = ({title, buttonName, buttonColor, children, handleSubmit }: Props
     <form>
       <Typography variant='h2'>{title}</Typography>
       {children}
+      <br/>
       <Button buttonSize='small' color={buttonColor} isFullWidth={false} type='submit' handleClick={() => handleSubmit()}>
         {buttonName}
       </Button>

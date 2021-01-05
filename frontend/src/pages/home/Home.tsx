@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import SimpleCard from '../../components/card';
+import Card from '../../components/card';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserState } from '../../redux/user/userReducer';
 import { addUser } from '../../redux';
@@ -29,9 +29,9 @@ const Home = () => {
   }, []);
 
   return profile.name ? (
-    <SimpleCard>
+    <Card cardWidth='auto'>
       <Typography variant="h2">{profile.name}</Typography>
-    </SimpleCard>
+    </Card>
   ) : null
 };
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import SimpleCard from '../../components/card';
+import Card from '../../components/card';
 import Typography from '../../components/typography';
 
 const Swipe = () => {
   return (
-    <SimpleCard>
+    <Card cardWidth='auto'>
       <Typography variant="h4" color="primary">
         Working
       </Typography>
-    </SimpleCard>
+    </Card>
   );
 }
 

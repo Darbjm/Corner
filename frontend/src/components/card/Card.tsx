@@ -1,29 +1,19 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
+import { StyledCard } from './Card.style';
 import CardContent from '@material-ui/core/CardContent';
-import {makeStyles} from '@material-ui/core/styles';
 
 export interface Props {
   children: JSX.Element | JSX.Element[] | string | number;
+  cardWidth?: string;
+  cardHeight?: string;
 }
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: '50%',
-    minHeight: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-});
-
-const SimpleCard = ({children}: Props): JSX.Element => {
+const Card = ({children, cardWidth, cardHeight}: Props): JSX.Element => {
   return (
-    <Card className={useStyles().root}>
-      <CardContent>{children}</CardContent>
-    </Card>
+      <StyledCard $cardWidth={cardWidth} $cardHeight={cardHeight}>
+        <CardContent>{children}</CardContent>
+      </StyledCard>
   );
 };
 
-export default SimpleCard;
+export default Card;

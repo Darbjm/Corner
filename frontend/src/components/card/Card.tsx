@@ -6,11 +6,12 @@ export interface Props {
   children: JSX.Element | JSX.Element[] | string | number;
   cardWidth?: string;
   cardHeight?: string;
+  textAlign?: 'center' | 'right'
 }
 
-const Card = ({children, cardWidth, cardHeight}: Props): JSX.Element => {
+const Card = ({children, cardWidth, cardHeight, textAlign}: Props): JSX.Element => {
   return (
-      <StyledCard $cardWidth={cardWidth} $cardHeight={cardHeight}>
+      <StyledCard $cardWidth={cardWidth} $cardHeight={cardHeight} $textAlign={textAlign}>
         <CardContent>{children}</CardContent>
       </StyledCard>
   );

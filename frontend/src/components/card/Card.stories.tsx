@@ -1,20 +1,20 @@
-import SimpleCard from './Card';
+import Card from './Card';
 import React from 'react';
 import Typography from '../typography'
 
 export default {
   title: 'Card',
-  component: SimpleCard,
+  component: Card,
 };
 
-export const Simple = () => {
+export const SimpleCard = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}} key="small">
-      <SimpleCard cardWidth='100px' cardHeight='100px'><Typography variant='bodyMedium'>Card</Typography></SimpleCard>
+      <Card cardWidth='100px' cardHeight='100px'><Typography variant='bodyMedium'>Card</Typography></Card>
     </div>
   );
 };
 
-Simple.story = {
-  name: 'Simple Card',
+SimpleCard.story = {
+  name: ' Card',
 };

@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 import {PRIMARY, SECONDARY} from '../../styles';
 import {ColorTypeKey} from '../../styles/theme';
+import { Link } from 'react-router-dom'
 
 export type TextAlign = 'left' | 'right' | 'center' | undefined;
 
 export type Tag = 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'a' | 'div';
-
-const setColor = (color: ColorTypeKey) => {
-  if (color) {
-    if (color === 'primary') return PRIMARY;
-    return SECONDARY;
-  }
-  return undefined;
-};
 
 export const components = {
   h1: styled.h1<{align: string; color: ColorTypeKey;}>`
@@ -21,7 +14,7 @@ export const components = {
     line-height: 1.25;
     font-family: 'Playfair Display, serif'
     margin: 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   h2: styled.h2<{align: string; color: ColorTypeKey;}>`
@@ -30,7 +23,7 @@ export const components = {
     line-height: 1.25;
     font-family: 'Playfair Display, serif'
     margin: 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   h4: styled.h4<{align: string; color: ColorTypeKey;}>`
@@ -39,7 +32,7 @@ export const components = {
     line-height: 1.25;
     font-family: 'Playfair Display, serif'
     margin: 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodyMedium: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
@@ -48,7 +41,7 @@ export const components = {
     line-height: 1.5;
     font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 10px 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodySmall: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
@@ -57,7 +50,7 @@ export const components = {
     line-height: 1.5;
     font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 5px 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   bodyLarge: styled.p<{align: string; color: ColorTypeKey; font: 'header';}>`
@@ -66,7 +59,7 @@ export const components = {
     line-height: 1.5;
     font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 10px 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   caption: styled.span<{align: string; color: ColorTypeKey; font: 'header';}>`
@@ -75,7 +68,7 @@ export const components = {
     line-height: 1.5;
     font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   link: styled.a<{align: string; color: ColorTypeKey; font: 'header';}>`
@@ -85,9 +78,19 @@ export const components = {
     font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
     margin: 0;
     text-decoration: underline;
-    color: ${props => setColor(props.color)};
+    color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
+  internalLink: styled(Link)<{align: string; color: ColorTypeKey; font: 'header';}>`
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}
+  margin: 0;
+  text-decoration: underline;
+  color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
+  text-align: ${props => (props.align ? props.align : 'left')};
+`,
 };
 
 export type Variant = keyof typeof components;
@@ -103,4 +106,5 @@ export const variantTagMap: {[K in Variant]: Tag} = {
   h4: 'h4',
   caption: 'span',
   link: 'a',
+  internalLink: 'a'
 };

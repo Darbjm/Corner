@@ -1,7 +1,8 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import Form from '../../components/form'
 import Card from '../../components/card'
 import TextField from '../../components/textField'
+import Typography from '../../components/typography'
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -10,8 +11,7 @@ const Login = () => {
     Password: '',
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     console.log(details);
   };
 
@@ -23,11 +23,14 @@ const Login = () => {
   };
 
   return (
-    <Card cardWidth='auto'>
-      <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => console.log('working')}>
-        <TextField elName='Username' color='primary' onChange={() => console.log('working')} />
-        <TextField elName='Password' color='primary' onChange={() => console.log('working')} />
+    <Card cardWidth='100%' cardHeight='100%'>
+      <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
+        <TextField elName='Username' color='primary' onChange={handleChange} />
+        <TextField elName='Password' type='password' color='primary' onChange={handleChange} />
       </Form>
+      <br/>
+      <br/>
+      <Typography color='primary' variant='internalLink' to='/register'>Register</Typography>
     </Card>
   );
 };

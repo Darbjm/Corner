@@ -6,7 +6,7 @@ import TextField from '../../components/textField'
 import Typography from '../../components/typography'
 
 const Login = () => {
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState({});
   const [details, setDetails] = useState({
     Username: '',
     Password: '',
@@ -26,12 +26,12 @@ const Login = () => {
   return (
     <Card cardWidth='100%' cardHeight='100%'>
       <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
-        <TextField placeholder='Username' elName='username' color='primary' onChange={handleChange} />
-        <TextField placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />
+        <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
+        <TextField error={errorMessage} placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />
       </Form>
       <br/>
       <br/>
-      <Typography color='primary' variant='internalLink' to='/register'>Register</Typography>
+      <Typography variant='internalLink' to='/register'>Register</Typography>
     </Card>
   );
 };

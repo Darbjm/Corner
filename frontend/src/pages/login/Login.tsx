@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import Form from '../../components/form'
 import Card from '../../components/card'
 import TextField from '../../components/textField'
@@ -11,8 +12,8 @@ const Login = () => {
     Password: '',
   });
 
-  const handleSubmit = () => {
-    console.log(details);
+  const handleSubmit = async () => {
+    const res = await axios.post('/api/consumers/login', details)
   };
 
   const handleChange = (name: string, value: string | undefined) => {
@@ -25,8 +26,8 @@ const Login = () => {
   return (
     <Card cardWidth='100%' cardHeight='100%'>
       <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
-        <TextField elName='Username' color='primary' onChange={handleChange} />
-        <TextField elName='Password' type='password' color='primary' onChange={handleChange} />
+        <TextField placeholder='Username' elName='username' color='primary' onChange={handleChange} />
+        <TextField placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />
       </Form>
       <br/>
       <br/>

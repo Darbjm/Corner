@@ -10,7 +10,7 @@ export default {
 export const Field = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
-      <TextField elName="Test" onChange={() => console.log('working')} color='primary'/>
+      <TextField elName="Test" placeholder='Test' onChange={() => console.log('working')} color='primary'/>
     </div>
   );
 };

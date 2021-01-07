@@ -11,10 +11,10 @@ export const FormS = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
       <Form title='Register' buttonName='Register' buttonColor='primary' handleSubmit={() => console.log('working')}>
-        <TextField elName='Username' color='primary' onChange={() => console.log('working')}/>
-        <TextField elName='Area code' color='primary' onChange={() => console.log('working')}/>
-        <TextField elName='Password' color='primary' onChange={() => console.log('working')}/>
-        <TextField elName='Password confirmation' color='primary' onChange={() => console.log('working')}/>
+        <TextField placeholder='Username' elName='Username' color='primary' onChange={() => console.log('working')}/>
+        <TextField placeholder='Area code' elName='Area code' color='primary' onChange={() => console.log('working')}/>
+        <TextField placeholder='Password' elName='Password' color='primary' onChange={() => console.log('working')}/>
+        <TextField placeholder='Password confimation' elName='Password confirmation' color='primary' onChange={() => console.log('working')}/>
       </Form>
     </div>
   );

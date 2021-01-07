@@ -6,15 +6,15 @@ export interface Props {
   onChange: (name: string, value: string | undefined) => void;
   elName: string;
   color: ColorTypeKey
+  placeholder: string;
   value?: string;
   help?: string;
   error?: boolean;
   type?: string;
-  placeholder?: string;
   name?: string;
 }
 
-const StandardTextField = ({elName, onChange, color, ...props}: Props): JSX.Element => {
+const StandardTextField = ({elName, onChange, color, placeholder, ...props}: Props): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     onChange(elName, e.target.value);
@@ -25,7 +25,7 @@ const StandardTextField = ({elName, onChange, color, ...props}: Props): JSX.Elem
         color={color}
         helperText={props.help ? props.help : ''}
         error={props.error}
-        label={elName}
+        label={placeholder}
         name={elName}
         value={props.value}
         onChange={handleChange}

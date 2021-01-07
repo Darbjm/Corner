@@ -1,11 +1,13 @@
 import React, { useState }  from 'react';
+import { withRouter, RouteComponentProps } from "react-router";
 import axios from 'axios'
 import Card from '../../components/card'
 import Typography from '../../components/typography';
 import Form from '../../components/form'
 import TextField from '../../components/textField'
 
-const Register = () => {
+
+const Register = ({history}: RouteComponentProps): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState({});
   const [details, setDetails] = useState({
     username: '',
@@ -16,16 +18,14 @@ const Register = () => {
 
   const handleSubmit = async () => {
     axios.post('/api/consumers/register', details)
-      .then(res => {
-          console.log(res);
-      })
-      .catch(err => {
-          console.log(err.response.data);
-          setErrorMessage(err.response.data);
-      });
+    .then(res => {
+      history.push('/login')
+      console.log(res)
+    })
+    .catch(err => setErrorMessage(err.response.data))
   };
 
-  const handleChange = (name: string, value: string | undefined) => {
+  const handleChange = (name: string, value: string | undefined): void => {
     setDetails(prevState => ({
       ...prevState,
       [name]: value,
@@ -47,4 +47,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default withRouter(Register)

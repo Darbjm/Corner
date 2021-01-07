@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { withRouter, RouteComponentProps } from "react-router";
+import auth from '../../lib/auth'
 import Form from '../../components/form'
 import Card from '../../components/card'
 import TextField from '../../components/textField'
 import Typography from '../../components/typography'
 
-const Login = () => {
+const Login = ({history}: RouteComponentProps): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState({});
   const [details, setDetails] = useState({
     Username: '',
@@ -13,7 +15,19 @@ const Login = () => {
   });
 
   const handleSubmit = async () => {
-    const res = await axios.post('/api/consumers/login', details)
+    axios.post('/api/consumers/login', details)
+    .then(res => {
+      auth.setToken(res.data.token)
+      history.push('/')
+    })
+    .catch(err => {
+      if (err.response.data) {
+        setErrorMessage({
+          username: 'Invalid credentials',
+          password: 'Invalid credentials'
+        })
+      }
+    })
   };
 
   const handleChange = (name: string, value: string | undefined) => {
@@ -36,4 +50,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

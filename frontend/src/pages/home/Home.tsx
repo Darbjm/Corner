@@ -5,34 +5,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserState } from '../../redux/user/userReducer';
 import { addUser } from '../../redux';
 import Typography from '../../components/typography';
-import { headers } from '../../lib/headers'
-
 const Home = () => {
   const dispatch = useDispatch();
   const profile = useSelector<UserState, any>(state => state.user);
 
   useEffect(() => {
+    const searchTerm = 'chips'
     const getData = async () => {
-      try {
-        // use https://spoonacular.com/ for foods
-        console.log('here')
-        // @ts-ignore
-        const res = await axios.get('/api/consumers/register', headers.common);
-        console.log(res)
-        // const user = res.data[0];
-        // dispatch(addUser(user));
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      await axios.get(`https://api.edamam.com/api/food-database/v2/parser?ingr=${searchTerm}&app_id=${appId}&app_key=${appKey}`)
+      .then(response => {
+        console.log(response.data);
+      }).catch(error => {
+        console.error(error);
+      });
+    }
     getData();
   }, []);
 
-  return profile.name ? (
-    <Card cardWidth='auto'>
-      <Typography variant="h2">{profile.name}</Typography>
+  return (
+    <Card cardWidth='25%' cardHeight='25%'>
+      <Typography variant="h2">Hello</Typography>
     </Card>
-  ) : null
+  )
 };
 
 export default Home;

@@ -13,6 +13,7 @@ djangorestframework = "*"
 pyjwt = "*"
 django-cors-headers = "*"
 django-heroku = "*"
+bs4 = "*"
 
 [requires]
 python_version = "3.7"

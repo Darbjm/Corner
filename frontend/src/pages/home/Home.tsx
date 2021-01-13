@@ -10,16 +10,16 @@ const Home = () => {
   const profile = useSelector<UserState, any>(state => state.user);
 
   useEffect(() => {
-    const searchTerm = 'chips'
-    const getData = async () => {
-      await axios.get(`https://api.edamam.com/api/food-database/v2/parser?ingr=${searchTerm}&app_id=${appId}&app_key=${appKey}`)
-      .then(response => {
-        console.log(response.data);
-      }).catch(error => {
-        console.error(error);
-      });
-    }
-    getData();
+    // const searchTerm = 'chips'
+    // const getData = async () => {
+    //   await axios.get()
+    //   .then(response => {
+    //     console.log(response.data);
+    //   }).catch(error => {
+    //     console.error(error);
+    //   });
+    // }
+    // getData();
   }, []);
 
   return (
@@ -30,9 +30,3 @@ const Home = () => {
 };
 
 export default Home;
-
-interface HomeProps {}
-
-interface StateProps {
-  user: object;
-}

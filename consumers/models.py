@@ -8,9 +8,9 @@ class Consumer(AbstractUser):
 
     area_code = models.CharField(max_length=15)
     likes = models.ForeignKey(
-        Food, related_name='Consumer_Likes', null=True, on_delete=models.CASCADE)
+        Food, related_name='Consumer_Likes', null=True, on_delete=models.SET_NULL)
     dislikes = models.ForeignKey(
-        Food, related_name='Consumers_Dislikes', null=True, on_delete=models.CASCADE)
+        Food, related_name='Consumers_Dislikes', null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.username} - {self.area_code}'

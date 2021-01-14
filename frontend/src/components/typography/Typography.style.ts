@@ -27,7 +27,7 @@ export const components = {
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
   h4: styled.h4<{align: string; color: ColorTypeKey;}>`
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 1.25;
     font-family: 'Playfair Display, serif'

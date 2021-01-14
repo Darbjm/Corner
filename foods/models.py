@@ -5,10 +5,10 @@ User = get_user_model()
 
 
 class Food(models.Model):
-    Name = models.CharField(max_length=50)
-    Image = models.CharField(max_length=500)
-    Price = models.CharField(max_length=50, null=True)
-    Description = models.CharField(max_length=500, null=True)
-    Likes = models.CharField(max_length=50, null=True)
-    Creator = models.ForeignKey(
+    name = models.CharField(max_length=50, unique=True)
+    image = models.CharField(max_length=500, unique=True)
+    price = models.CharField(max_length=50, null=True)
+    description = models.CharField(max_length=500, null=True)
+    likes = models.CharField(max_length=50, null=True)
+    creator = models.ForeignKey(
         User, related_name='creator', null=True, on_delete=models.SET_NULL)

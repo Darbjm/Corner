@@ -1,0 +1,182 @@
+[
+    {
+      "model": "foods.food",
+      "pk": 1,
+      "fields": {
+        "name": "Sathers Candy Corn 125g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
+        "price": "£1.89"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 2,
+      "fields": {
+        "name": "🔍 Nerds Rope Very Berry 26g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/WonkaNerdsRopeVeryBerry_750x.jpg?v=1588607627",
+        "price": "£1.29"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 3,
+      "fields": {
+        "name": "Laffy Taffy Blue Raspberry Rope Candy",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/wonka-laffy-taffy-blue-raspberry-rope-800x800_750x.png?v=1589405027",
+        "price": "£0.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 4,
+      "fields": {
+        "name": "Airheads - 6 Bar Selection Box 93.6g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/airheads-6-bar-theatre-box-3-3oz-800x800-800x600_750x.png?v=1584323115",
+        "price": "£1.99"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 5,
+      "fields": {
+        "name": "Nerds Rope Rainbow 26g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/WonkaNerdsRope_750x.jpg?v=1588607509",
+        "price": "£1.29"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 6,
+      "fields": {
+        "name": "Birthday Cake Cookie Dough Bites Theater Box (3.1oz)",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/bdcas-800x600_750x.png?v=1584323348",
+        "price": "£1.99"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 7,
+      "fields": {
+        "name": "Laffy Taffy Mystery Swirl Rope Candy",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/wonka-laffy-taffy-mystery-swirl-rope-800x800-800x600_750x.png?v=1584323196",
+        "price": "£0.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 8,
+      "fields": {
+        "name": "Dr Pepper Cotton Candy (3oz)",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/dr-pepper-cotton-candy-3.1oz-12ct-800x800_750x.png?v=1589115919",
+        "price": "£3.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 9,
+      "fields": {
+        "name": "Cinnamon Bun Bites Theater Box (3.1oz)",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/cinn-800x600_750x.png?v=1584323373",
+        "price": "£1.99"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 10,
+      "fields": {
+        "name": "Jelly Belly Bean-Shaped Lollipop - 0.59oz (17g)",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/jelly-belly-lollipop-0-59oz-17g-2-800x800_750x.png?v=1591391789",
+        "price": "£0.39"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 11,
+      "fields": {
+        "name": "Sour Patch Kids Extreme 113g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sour-patch-kids-extreme-4oz-bag-2_750x.gif?v=1588780835",
+        "price": "£2.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 12,
+      "fields": {
+        "name": "Twizzlers Strawberry Twists 70g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/TwizzlersStrawberryTwists25oz_750x.jpg?v=1588608508",
+        "price": "£1.89"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 13,
+      "fields": {
+        "name": "Cookie Dough Bites Fudge Brownie Theatre Box (3.1oz)",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/13-502U-F_750x.png?v=1589405875",
+        "price": "£1.99"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 14,
+      "fields": {
+        "name": "Sour Patch Kids Watermelon 56g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/Sour-Patch-Watermelon-2-Oz-Bag_750x.jpg?v=1589407646",
+        "price": "£1.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 15,
+      "fields": {
+        "name": "Laffy Taffy Rope Strawberry 22g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/strw_750x.png?v=1591999966",
+        "price": "£0.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 16,
+      "fields": {
+        "name": "Jolly Rancher Chews Original Fruit 56g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/jolly-rancher-chews-original-800x800-800x600_750x.png?v=1584323158",
+        "price": "£1.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 17,
+      "fields": {
+        "name": "Mike & Ike Mega Mix 10 Flavours 141G",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/megamix-800x600_750x.jpg?v=1584323224",
+        "price": "£1.99"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 18,
+      "fields": {
+        "name": "Laffy Taffy Rope Sour Apple 22g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/applelaffy_750x.png?v=1591999896",
+        "price": "£0.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 19,
+      "fields": {
+        "name": "Swedish Fish Red 141g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/swedish-fish-red-peg-bag-5oz-800x800-800x600_750x.png?v=1584323289",
+        "price": "£2.49"
+      }
+    },
+    {
+      "model": "foods.food",
+      "pk": 20,
+      "fields": {
+        "name": "Sour Patch Kids Original 141g",
+        "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sour-patch-kids-original-5oz-800x800-800x800-800x600_750x.png?v=1584323266",
+        "price": "£2.49"
+      }
+    }
+  ]

@@ -65,7 +65,7 @@ class AddView(APIView):
     def post(self, request):
         food = FoodSerializer(data=request.data)
         if food.is_valid():
-            food.bulk_create()
+            food.save()
             return Response(food.data, status=HTTP_201_CREATED)
         return Response(food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 

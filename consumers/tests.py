@@ -7,7 +7,7 @@ from django.contrib.auth.models import AnonymousUser
 
 user_data = {
     'username': 'test',
-    'areacode': 'SE1',
+    'area_code': 'SE1',
     'password': 'MyDiffPass96',
     'password_confirmation': 'MyDiffPass96',
 }
@@ -23,25 +23,25 @@ class RegisterTest(APITestCase):
         self.login_url = reverse('login')
         self.simple_password = {
             'username': 'test',
-            'areacode': 'SE1',
+            'area_code': 'SE1',
             'password': 'Password1',
             'password_confirmation': 'Password1',
         }
         self.password_does_not_match = {
             'username': 'test',
-            'areacode': 'SE1',
+            'area_code': 'SE1',
             'password': 'Password1',
             'password_confirmation': 'Pass',
         }
         self.no_username = {
             'username': '',
-            'areacode': 'SE1',
+            'area_code': 'SE1',
             'password': 'Password1',
             'password_confirmation': 'Password1',
         }
-        self.no_areacode = {
+        self.no_area_code = {
             'username': 'test',
-            'areacode': '',
+            'area_code': '',
             'password': 'Password1',
             'password_confirmation': 'Password1',
         }
@@ -75,12 +75,12 @@ class RegisterTest(APITestCase):
         self.assertEqual(
             str(response.data['username'][0]), 'This field may not be blank.')
 
-    def test_will_check_for_areacode(self):
+    def test_will_check_for_area_code(self):
         response = self.client.post(
-            self.register_url, self.no_areacode)
+            self.register_url, self.no_area_code)
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
-            str(response.data['areacode'][0]), 'This field may not be blank.')
+            str(response.data['area_code'][0]), 'This field may not be blank.')
 
 # Unsure whether these are intergration tests - need research
 
@@ -92,13 +92,13 @@ class LoginTest(APITestCase):
         self.login_url = reverse('login')
         self.simple_password = {
             'username': 'test',
-            'areacode': 'SE1',
+            'area_code': 'SE1',
             'password': 'Password1',
             'password_confirmation': 'Password1',
         }
         self.unregistered_user = {
             'username': 'unreg',
-            'areacode': 'SE1',
+            'area_code': 'SE1',
             'password': 'MyDiffUnreg184',
             'password_confirmation': 'MyDiffUnreg184',
         }
@@ -139,7 +139,7 @@ class UserViewTest(APITestCase):
             reverse('profile', kwargs={'pk': self.user_id}), **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(request.status_code, 200)
         self.assertEqual(request.data['username'], user_data['username'])
-        self.assertEqual(request.data['areacode'], user_data['areacode'])
+        self.assertEqual(request.data['area_code'], user_data['area_code'])
         self.assertEqual(request.data['id'], self.user_id)
 
     def test_user_without_token_cannot_access_profile(self):
@@ -173,39 +173,42 @@ class UserEditTest(APITestCase):
             self.token, settings.SECRET_KEY, algorithms=['HS256'])
         self.user_id = user_token['sub']
 
-    def test_logged_in_user_can_edit_profile(self):
-        new_user = {
-            'username': 'test2',
-            'areacode': 'NN1'
-        }
-        request = self.client.put(
-            reverse('edit', kwargs={'pk': self.user_id}), new_user, **{'HTTP_AUTHORIZATION': BEARER + self.token})
-        self.assertEqual(request.status_code, 202)
-        self.assertEqual(request.data['username'], new_user['username'])
-        self.assertEqual(request.data['areacode'], new_user['areacode'])
-        self.assertEqual(request.data['id'], self.user_id)
 
-    def test_user_without_token_cannot_edit_profile(self):
-        new_user = {
-            'username': 'test2',
-            'areacode': 'NN1'
-        }
-        request = self.client.put(
-            reverse('edit', kwargs={'pk': self.user_id}), new_user)
-        self.assertEqual(request.status_code, 401)
-        self.assertEqual(
-            request.data['detail'], 'Authentication credentials were not provided.')
+def test_logged_in_user_can_edit_profile(self):
+    new_user = {
+        'username': 'test2',
+        'area_code': 'NN1'
+    }
+    request = self.client.put(
+        reverse('edit', kwargs={'pk': self.user_id}), new_user, **{'HTTP_AUTHORIZATION': BEARER + self.token})
+    self.assertEqual(request.status_code, 202)
+    self.assertEqual(request.data['username'], new_user['username'])
+    self.assertEqual(request.data['area_code'], new_user['area_code'])
+    self.assertEqual(request.data['id'], self.user_id)
 
-    def test_user_must_send_information(self):
-        new_user = {
-        }
-        request = self.client.put(
-            reverse('edit', kwargs={'pk': self.user_id}), new_user, **{'HTTP_AUTHORIZATION': BEARER + self.token})
-        self.assertEqual(request.status_code, 422)
-        self.assertEqual(
-            request.data['username'][0], REQUIRED_FIELD)
-        self.assertEqual(
-            request.data['areacode'][0], REQUIRED_FIELD)
+
+def test_user_without_token_cannot_edit_profile(self):
+    new_user = {
+        'username': 'test2',
+        'area_code': 'NN1'
+    }
+    request = self.client.put(
+        reverse('edit', kwargs={'pk': self.user_id}), new_user)
+    self.assertEqual(request.status_code, 401)
+    self.assertEqual(
+        request.data['detail'], 'Authentication credentials were not provided.')
+
+
+def test_user_must_send_information(self):
+    new_user = {
+    }
+    request = self.client.put(
+        reverse('edit', kwargs={'pk': self.user_id}), new_user, **{'HTTP_AUTHORIZATION': BEARER + self.token})
+    self.assertEqual(request.status_code, 422)
+    self.assertEqual(
+        request.data['username'][0], REQUIRED_FIELD)
+    self.assertEqual(
+        request.data['area_code'][0], REQUIRED_FIELD)
 
 
 class UserDeleteTest(APITestCase):

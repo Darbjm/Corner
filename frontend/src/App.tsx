@@ -4,7 +4,7 @@ import Login from './pages/login';
 import Swipe from './pages/swipe';
 import Home from './pages/home';
 import Register from './pages/register'
-import { Section } from './styles/Components.style';
+import { Section } from './styles/BasicComponents.style';
 
 
 function App() {

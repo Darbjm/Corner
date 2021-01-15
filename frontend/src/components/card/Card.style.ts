@@ -10,6 +10,10 @@ export const StyledCard = styled(Card)<{
     $cardWidth?: string; 
     $cardHeight?: string;
     $textAlign?: 'center' | 'right'
+    $marginBottom?: string;
+    $marginTop?: string;
+    $marginLeft?: string;
+    $marginRight?: string;
 }>`
     display: flex;
     align-items: center;
@@ -17,4 +21,8 @@ export const StyledCard = styled(Card)<{
     text-align: ${({$textAlign}) => $textAlign ? `${Align[$textAlign]}` : 'left'};
     width: ${({$cardWidth}) => $cardWidth ? `${$cardWidth}` : null};
     height: ${({$cardHeight}) => $cardHeight ? `${$cardHeight}` : null};
+    margin-bottom: ${({$marginBottom}) => $marginBottom ? `${$marginBottom}` : null};
+    margin-top: ${({$marginTop}) => $marginTop ? `${$marginTop}` : null};
+    margin-right: ${({$marginRight}) => $marginRight ? `${$marginRight}` : null};
+    margin-left: ${({$marginLeft}) => $marginLeft ? `${$marginLeft}` : null};
   `;

@@ -38,7 +38,7 @@ const Login = ({history}: RouteComponentProps): JSX.Element => {
   };
 
   return (
-    <Card cardWidth='100%' cardHeight='100%'>
+    <Card cardWidth='40%'>
       <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
         <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
         <TextField error={errorMessage} placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />

@@ -1,11 +1,10 @@
 body {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
+  /* height: 100vh;
+  width: 100vw; */
+  /* margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-family: Ubuntu !important; */
   background: linear-gradient(
     45.34deg,
     #ff5700 5.66%,
@@ -70,5 +69,5 @@ body {
   }
   100% {
     background-position: 91% 0%;
-  }
+  } */
 }

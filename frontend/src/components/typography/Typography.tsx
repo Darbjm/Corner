@@ -15,10 +15,10 @@ export interface Props {
 }
 
 const Typography = ({variant, children, href, to, ...props}: Props): JSX.Element => {
-  let blank: string = variant === 'link' ? '_blank' : ''
+  const blank: string = variant === 'link' ? '_blank' : ''
   const Component: any = variant && components[variant];
 
-  return <Component {...props} to={to} href={href} target={blank}>{children}</Component>
+  return <Component {...props} to={to} href={href} target={blank} >{children}</Component>
 };
 
 export default Typography;

@@ -33,7 +33,7 @@ const Register = ({history}: RouteComponentProps): JSX.Element => {
   };
 
   return (
-    <Card cardWidth='100%' cardHeight='100%'>
+    <Card cardWidth='40%'>
       <Form title='Register' buttonName='Submit' buttonColor='primary' handleSubmit={() => handleSubmit()}>
         <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
         <TextField error={errorMessage} placeholder='Area code' elName='area_code'color='primary' onChange={handleChange} />

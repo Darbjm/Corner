@@ -27,32 +27,42 @@ class AllView(APIView):
 class ScrapeSnacksView(APIView):
 
     def get(self, request):
-        result = requests.get(
-            'https://thesnackchest.co.uk/collections/american-sweets')
-        src = result.content
-        soup = BeautifulSoup(src, 'html.parser')
         foods = []
-        pk = 1
-        for link in soup.find_all(
-                "a", attrs={'class': 'grid-link'}):
-            image = link.img['data-src']
-            name = link.p.text
-            price = link.find('p', attrs={'grid-link__meta'}).text
-            remove_newline = price.replace('\n', '')
-            remove_price = remove_newline.replace('Regular price', '')
-            remove_space = remove_price.replace(' ', '')
-            clean_image = image[2:]
-            final_image = clean_image.format(width='750')
-            foods.append({
-                'model': 'foods.food',
-                'pk': pk,
-                'fields': {
-                    'name': name,
-                    'image': final_image,
-                    'price': remove_space
-                }})
-            pk += 1
+        pk = 308
+        for i in range(1, 4):
+            print(i)
+            url = f'https://thesnackchest.co.uk/collections/american-chocolate?page={i}'
+            result = requests.get(
+                url)
+            src = result.content
+            soup = BeautifulSoup(src, 'html.parser')
+            for link in soup.find_all(
+                    "a", attrs={'class': 'grid-link'}):
+                image = link.img['data-src']
+                name = link.p.text
+                price = link.find('p', attrs={'grid-link__meta'}).text
+                remove_newline = price.replace('\n', '')
+                remove_price = remove_newline.replace('Regular price', '')
+                remove_space = remove_price.replace(' ', '')
+                clean_image = image[2:]
+                final_image = clean_image.format(width='750')
+                foods.append({
+                    'model': 'foods.food',
+                    'pk': pk,
+                    'fields': {
+                        'name': name,
+                        'image': final_image,
+                        'price': remove_space
+                    }})
+                pk += 1
         return Response(foods)
+
+        # page 1-5 https://thesnackchest.co.uk/collections/american-sweets?page=5
+        # page 1-4 https://thesnackchest.co.uk/collections/american-drinks?page=4
+        # page 1-4 https://thesnackchest.co.uk/collections/american-snacks?page=4
+        # https://thesnackchest.co.uk/collections/american-crisps
+        # https://thesnackchest.co.uk/collections/american-cereal
+        # https://thesnackchest.co.uk/collections/home-baking?page=2
 
 
 class AddView(APIView):

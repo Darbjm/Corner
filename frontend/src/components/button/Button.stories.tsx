@@ -1,15 +1,9 @@
 import React from 'react';
 import Button from './Button';
-import {ColorTypeKey} from '../../styles/theme';
 
 export default {
   title: 'Button',
   component: Button,
-};
-
-const buttonTypes: {[K in ColorTypeKey]: string} = {
-  primary: 'Primary',
-  secondary: 'Secondary',
 };
 
 export const AllColours = () => {

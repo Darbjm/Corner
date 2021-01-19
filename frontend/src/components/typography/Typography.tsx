@@ -12,13 +12,17 @@ export interface Props {
   align?: TextAlign;
   color?: ColorTypeKey;
   to?: string;
+  handleClick?: () => void;
 }
 
 const Typography = ({variant, children, href, to, ...props}: Props): JSX.Element => {
   const blank: string = variant === 'link' ? '_blank' : ''
   const Component: any = variant && components[variant];
+  const click = () => {
+    if (props.handleClick) return props.handleClick();
+  };
 
-  return <Component {...props} to={to} href={href} target={blank} >{children}</Component>
+  return <Component {...props} to={to} href={href} target={blank} onClick={() => click()}>{children}</Component>
 };
 
 export default Typography;

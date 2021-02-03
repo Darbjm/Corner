@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NavBar = styled.nav<{
+export const Nav = styled.nav<{
 
 }>`
     position:fixed;
@@ -11,6 +11,7 @@ export const NavBar = styled.nav<{
     display: flex;
     padding: 5px;
     align-items: center;
+    background-color: white;
   `;
 
 export const NavLogo = styled.img`
@@ -28,5 +29,6 @@ export const NavEnd = styled.div`
 export const NavLinks = styled.div`
     width: 80%;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
 `

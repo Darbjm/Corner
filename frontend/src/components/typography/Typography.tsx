@@ -12,6 +12,7 @@ export interface Props {
   align?: TextAlign;
   color?: ColorTypeKey;
   to?: string;
+  size?: 'large';
   handleClick?: () => void;
 }
 
@@ -22,7 +23,7 @@ const Typography = ({variant, children, href, to, ...props}: Props): JSX.Element
     if (props.handleClick) return props.handleClick();
   };
 
-  return <Component {...props} to={to} href={href} target={blank} onClick={() => click()}>{children}</Component>
+  return <Component {...props} $size={props.size} to={to} href={href} target={blank} onClick={() => click()}>{children}</Component>
 };
 
 export default Typography;

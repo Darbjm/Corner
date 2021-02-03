@@ -6,6 +6,7 @@ import Form from '../../components/form'
 import Card from '../../components/card'
 import TextField from '../../components/textField'
 import Typography from '../../components/typography'
+import { Main } from '../../styles/BasicComponents.style'
 
 const Login = ({history}: RouteComponentProps): JSX.Element => {
   const [errorMessage, setErrorMessage] = useState({});
@@ -38,15 +39,17 @@ const Login = ({history}: RouteComponentProps): JSX.Element => {
   };
 
   return (
-    <Card cardWidth='40%'>
-      <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
-        <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
-        <TextField error={errorMessage} placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />
-      </Form>
-      <br/>
-      <br/>
-      <Typography variant='internalLink' to='/register'>Register</Typography>
-    </Card>
+    <Main>
+      <Card cardWidth='40%'>
+        <Form title='Login' buttonName='Login' buttonColor='primary' handleSubmit={() => handleSubmit()}>
+          <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
+          <TextField error={errorMessage} placeholder='Password' elName='password' type='password' color='primary' onChange={handleChange} />
+        </Form>
+        <br/>
+        <br/>
+        <Typography variant='internalLink' to='/register'>Register</Typography>
+      </Card>
+    </Main>
   );
 };
 

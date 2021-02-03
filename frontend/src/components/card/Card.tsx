@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyledCard } from './Card.style';
-import CardContent from '@material-ui/core/CardContent';
 
 export interface Props {
   children: JSX.Element | JSX.Element[] | string | number;
@@ -21,7 +20,7 @@ const Card = ({children, cardWidth, cardHeight, textAlign, ...props}: Props): JS
       $marginLeft={props.marginLeft}
       $marginRight={props.marginRight}
       >
-        <CardContent>{children}</CardContent>
+        {children}
       </StyledCard>
   );
 };

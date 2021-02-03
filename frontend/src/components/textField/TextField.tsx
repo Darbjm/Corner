@@ -8,6 +8,7 @@ interface ErrorObject {
   area_code?: string;
   password?: string;
   password_confirmation?: string;
+  search?: string;
 }
 
 export interface Props {
@@ -20,6 +21,7 @@ export interface Props {
   error: ErrorObject;
   type?: string;
   name?: string;
+  size?: 'large'
 }
 
 // Solution found on https://dev.to/kingdaro/indexing-objects-in-typescript-1cgi
@@ -27,7 +29,7 @@ function hasKey<O>(error: O, elName: keyof any): elName is keyof O {
   return elName in error
 }
 
-const StandardTextField = ({elName, onChange, color, placeholder, error, ...props}: Props): JSX.Element => {
+const StandardTextField = ({elName, onChange, color, placeholder, error, size, ...props}: Props): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
     onChange(elName, e.target.value);
@@ -50,6 +52,7 @@ const StandardTextField = ({elName, onChange, color, placeholder, error, ...prop
   return (
     <div>
       <TextFieldn
+        $textFieldSize={size}
         color={color}
         helperText={props.help ? props.help : ''}
         error={isError}

@@ -81,8 +81,8 @@ export const components = {
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
   `,
-  internalLink: styled(Link)<{align: string; color: ColorTypeKey; font: 'header';}>`
-  font-size: 13px;
+  internalLink: styled(Link)<{align: string; color: ColorTypeKey; font: 'header'; $size: 'large'}>`
+  font-size: ${props => props.$size === 'large' ? '24px;' : '13px;'}
   font-weight: 400;
   line-height: 1.5;
   font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif;'}

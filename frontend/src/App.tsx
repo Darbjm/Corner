@@ -4,22 +4,19 @@ import Login from './pages/login';
 import Swipe from './pages/swipe';
 import Home from './pages/home';
 import Register from './pages/register'
-import { Section } from './styles/BasicComponents.style';
+import NavBar from './components/navigation'
 
 
 function App() {
   return (
     <BrowserRouter>
-    <>
+      <NavBar />
       <Switch>
-        <Section>
-            <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
-            <Route path='/swipe' component={Swipe} />
-            <Route path='/register' component={Register} />
-        </Section>
+        <Route exact path='/' component={Home} />
+        <Route path='/login' component={Login} />
+        <Route path='/swipe' component={Swipe} />
+        <Route path='/register' component={Register} />
       </Switch>
-    </>
     </BrowserRouter>
   );
 }

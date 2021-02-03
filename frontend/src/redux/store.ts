@@ -1,7 +1,20 @@
 import { createStore, applyMiddleware } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 
-import {userReducer} from './user/userReducer';
+import { foodReducer } from './food/foodReducer';
 
-export const store = createStore(userReducer, composeWithDevTools(applyMiddleware(logger)))
+const persistConfig = {
+    blacklist: [],
+    key: 'foods',
+    storage
+  };
+
+const persistedReducer = persistReducer(persistConfig, foodReducer);
+
+const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(logger)))
+
+const persistor = persistStore(store);
+export { store, persistor };

@@ -12,6 +12,7 @@ export const Nav = styled.nav<{
     padding: 5px;
     align-items: center;
     background-color: white;
+    z-index: 100;
   `;
 
 export const NavLogo = styled.img`

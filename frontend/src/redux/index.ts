@@ -1,1 +1,1 @@
-export { addUser } from './user/actions'
+export { addFood} from './food/actions'

@@ -27,4 +27,5 @@ export const Main = styled.main`
   width: 100%;
   justify-content: center;
   align-items: center;
+  background-color: #f4f4f4;
 `

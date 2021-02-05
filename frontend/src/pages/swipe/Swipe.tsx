@@ -29,12 +29,15 @@ const Swipe = () => {
   return (
     randomFoods.length > 0 ? singleFood ? 
       (<Main>
-      <Card cardWidth='40%'>
-        <img src={'//' + singleFood.image} style={{maxWidth: '150px', maxHeight: '170px'}} />
-        <Typography variant="h4" color="primary">
+      <Card cardWidth='40%' cardHeight='350px'>
+        <img src={'//' + singleFood.image} style={{maxWidth: '150px', height: '170px', objectFit: 'cover'}} />
+        <Typography variant="h4" color="secondary" oneLine={true}>
           {singleFood.name}
         </Typography>
-        <Div width='100%' height='auto' vertical={false}>
+        <Typography variant="bodySmall" color="secondary">
+          {singleFood.price}
+        </Typography>
+        <Div width='100%' height='auto' vertical={false} style={{justifyContent: 'space-evenly'}}>
           <Button buttonSize='medium' color='primary' isFullWidth={false} handleClick={nextFood}>
             NO
           </Button>

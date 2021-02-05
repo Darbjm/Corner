@@ -7,10 +7,14 @@ import TextField from '../../components/textField'
 import Typography from '../../components/typography';
 import { Div, Main } from '../../styles/BasicComponents.style'
 import { FoodObject } from '../../redux/food/actions' 
+import Pagination from '../../components/pagination'
+
 
 const Home = () => {
   const dispatch = useDispatch();
   const foods: FoodObject[] | any = useSelector<{foods: FoodObject[]}>(state => state.foods);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [foodsPerPage, setFoodsPerPage] = useState(20);
   const [searchError, setErrorMessage] = useState({});
   const [search, setSearch] = useState('')
 
@@ -33,6 +37,14 @@ const Home = () => {
     if (value) {setSearch(value)}
   };
 
+  // get current foods
+  const indexOfLastFoods = currentPage * foodsPerPage;
+  const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
+  const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
+
+  // change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+
   const margin = '20px'
 
 
@@ -41,14 +53,16 @@ const Home = () => {
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='400px'>
           <TextField elName='search' size='large' onChange={handleChange} color='primary' placeholder='🔎 search' error={searchError}/>
+          <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} paginate={paginate}/>
         </Div>
-        {foods.map((food: FoodObject) => (
-          <Card key={food.name} cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
-            <img src={'//' + food.image} style={{maxWidth: '150px', maxHeight: '170px'}} />
-            <Typography variant="h4">{food.name}</Typography>
+        {currentFoods.map((food: FoodObject) => (
+          <Card key={food.name} justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
+            <img src={'//' + food.image} style={{maxWidth: '150px', height: '170px', objectFit: 'cover'}} />
+            <Typography variant="h4" align='center'>{food.name}</Typography>
             <Typography variant="bodySmall">{food.price}</Typography>
           </Card>))}
       </Div>
+      <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} paginate={paginate}/>
     </Main>
   ) : (
   <Main>

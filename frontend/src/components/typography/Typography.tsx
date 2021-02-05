@@ -14,6 +14,8 @@ export interface Props {
   to?: string;
   size?: 'large';
   handleClick?: () => void;
+  style?: React.CSSProperties;
+  oneLine?: boolean
 }
 
 const Typography = ({variant, children, href, to, ...props}: Props): JSX.Element => {
@@ -23,7 +25,7 @@ const Typography = ({variant, children, href, to, ...props}: Props): JSX.Element
     if (props.handleClick) return props.handleClick();
   };
 
-  return <Component {...props} $size={props.size} to={to} href={href} target={blank} onClick={() => click()}>{children}</Component>
+  return <Component {...props} $size={props.size} $oneLine={props.oneLine} to={to} href={href} target={blank} onClick={() => click()}>{children}</Component>
 };
 
 export default Typography;

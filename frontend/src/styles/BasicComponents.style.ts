@@ -24,6 +24,7 @@ export const Div = styled.div<{
 export const Main = styled.main`
   display: flex;
   min-height: 100vh;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;

@@ -1,32 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../../components/card';
 import Typography from '../../components/typography';
 import Button from '../../components/button';
 import { Main, Div } from '../../styles/BasicComponents.style'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { FoodObject } from '../../redux/food/actions' 
+import { removeRandomFood } from '../../redux';
 
 const Swipe = () => {
-  const foods = useSelector<any>(state => state);
+  const dispatch = useDispatch();
+  const randomFoods: FoodObject[] | any = useSelector<{randomFoods: FoodObject[]}>(state => state.randomFoods);
+  const [singleFood, setFood] = useState<FoodObject>()
+  const [clicks, setClicks] = useState<number>(1)
 
+  const getFood = () => {
+    dispatch(removeRandomFood(randomFoods));
+  }
+
+  const nextFood = () => {
+    setClicks(oldClicks => oldClicks + 1)
+    getFood()
+  }
+
+  useEffect(() => {
+    setFood(randomFoods[0])
+  });
 
   return (
-    <Main>
-      {console.log(foods)}
+    randomFoods.length > 0 ? singleFood ? 
+      (<Main>
       <Card cardWidth='40%'>
+        <img src={'//' + singleFood.image} style={{maxWidth: '150px', maxHeight: '170px'}} />
         <Typography variant="h4" color="primary">
-          working
+          {singleFood.name}
         </Typography>
         <Div width='100%' height='auto' vertical={false}>
-          <Button buttonSize='medium' color='primary' isFullWidth={false}>
+          <Button buttonSize='medium' color='primary' isFullWidth={false} handleClick={nextFood}>
             NO
           </Button>
-          <Button buttonSize='medium' color='secondary' isFullWidth={false}>
+          <Button buttonSize='medium' color='secondary' isFullWidth={false} handleClick={nextFood}>
             YES
           </Button>
         </Div>
       </Card>
-    </Main>
-  );
+    </Main>)
+    :
+    (<Main>
+      <Typography variant='h1'>...Loading</Typography>
+    </Main>)
+    : 
+      <Main>
+        <Typography variant='h1'>Out of Snacks!</Typography>
+      </Main>
+  )
 }
 
 export default Swipe;

@@ -11,7 +11,7 @@ export interface Props {
   isFullWidth: boolean;
   type?: 'submit'
   disabled?: boolean;
-  handleClick?: () => void;
+  handleClick?: () => void | undefined;
 }
 
 const SimpleButton = ({color, isFullWidth, buttonSize, children, disabled, ...props}: Props): JSX.Element => {

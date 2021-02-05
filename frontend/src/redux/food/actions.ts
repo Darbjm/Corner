@@ -1,4 +1,6 @@
-export type Action = {type: 'ADD_FOODS'; payload: FoodObject};
+export type AddFood = {type: 'ADD_FOODS'; payload: FoodObject[]};
+export type AddRandomFood = {type: 'ADD_RANDOM_FOODS'; payload: FoodObject[]};
+export type RemoveRandomFood = {type: 'REMOVE_RANDOM_FOODS'; payload: FoodObject[]};
 
 export interface FoodObject {
   id: number;
@@ -10,7 +12,31 @@ export interface FoodObject {
   image: string;
 }
 
-export const addFood = (food: FoodObject): Action => ({
+export const addFood = (food: FoodObject[]): AddFood => ({
   type: 'ADD_FOODS',
   payload: food,
 });
+
+export const addRandomFood = (food: FoodObject[]): AddRandomFood => {
+  const newFood = [...food]
+  function shuffleArray(array: FoodObject[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+  }
+  return {
+  type: 'ADD_RANDOM_FOODS',
+  payload: shuffleArray(newFood),
+  }
+};
+
+export const removeRandomFood = (food: FoodObject[]): RemoveRandomFood => {
+  const newFood = [...food]
+  newFood.shift()
+  return {
+  type: 'REMOVE_RANDOM_FOODS',
+  payload: newFood,
+  }
+};

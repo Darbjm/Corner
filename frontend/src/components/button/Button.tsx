@@ -1,17 +1,18 @@
 import React from 'react';
-import {Button} from './Button.style';
-import Typography from '../typography';
-import {Size} from './Button.style';
-import {ColorTypeKey} from '../../styles/theme';
+import { Button } from './Button.style';
+import { Size } from './Button.style';
+import { ColorTypeKey } from '../../styles/theme';
 
 export interface Props {
   children: string | number | JSX.Element | JSX.Element[];
   buttonSize: Size;
   color: ColorTypeKey;
   isFullWidth: boolean;
-  type?: 'submit'
+  font?: 'primary';
+  type?: 'submit';
+  style?: React.CSSProperties;
   disabled?: boolean;
-  handleClick?: () => void | undefined;
+  handleClick?: (e?: any) => void;
 }
 
 const SimpleButton = ({color, isFullWidth, buttonSize, children, disabled, ...props}: Props): JSX.Element => {
@@ -19,11 +20,11 @@ const SimpleButton = ({color, isFullWidth, buttonSize, children, disabled, ...pr
   const textColor = color === 'primary' ? 'secondary' : 'primary';
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (props.handleClick) return props.handleClick();
+    if (props.handleClick) return props.handleClick(e);
   };
   return (
-    <Button size={buttonSize} fullWidth={isFullWidth} colorType={color} onClick={handleClick} disabled={disabled}>
-      <Typography color={textColor} variant={textSize}>{children}</Typography>
+    <Button {...props} font={props.font} size={buttonSize} fullWidth={isFullWidth} colorType={color} onClick={(e) => handleClick(e)} disabled={disabled}>
+      {children}
     </Button>
   );
 };

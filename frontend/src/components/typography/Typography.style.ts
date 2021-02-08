@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {PRIMARY, SECONDARY} from '../../styles';
 import {ColorTypeKey} from '../../styles/theme';
 import { Link } from 'react-router-dom'
+import { PRIMARY_TYPOGRAPHY, SECONDARY_TYPOGRAPHY } from '../../styles/Typography'
 
 export type TextAlign = 'left' | 'right' | 'center' | undefined;
 
@@ -12,7 +13,7 @@ export const components = {
     font-size: 32px;
     font-weight: 800;
     line-height: 1.25;
-    font-family: 'Playfair Display, serif';
+    font-family: ${PRIMARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -22,7 +23,7 @@ export const components = {
     font-size: 24px;
     font-weight: 600;
     line-height: 1.25;
-    font-family: 'Playfair Display, serif';
+    font-family: ${PRIMARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -32,7 +33,7 @@ export const components = {
     font-size: 14px;
     font-weight: 600;
     line-height: 1.25;
-    font-family: 'Playfair Display, serif';
+    font-family: ${PRIMARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -42,7 +43,7 @@ export const components = {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+    font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 10px 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -52,7 +53,7 @@ export const components = {
     font-size: 13px;
     font-weight: 500;
     line-height: 1.5;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+    font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 5px 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -62,7 +63,7 @@ export const components = {
     font-size: 18px;
     font-weight: 500;
     line-height: 1.5;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+    font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 10px 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -72,7 +73,7 @@ export const components = {
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+    font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 0;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
@@ -82,7 +83,7 @@ export const components = {
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
-    font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+    font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
     white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
     margin: 0;
     text-decoration: underline;
@@ -93,7 +94,7 @@ export const components = {
   font-size: ${props => props.$size === 'large' ? '24px' : '13px'};
   font-weight: 400;
   line-height: 1.5;
-  font-family: ${props => props.font === 'header' ? 'Playfair Display, serif' : 'Raleway, sans-serif'};
+  font-family: ${props => props.font === 'header' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
   white-space: ${props => props.$oneLine === true ? 'nowrap' : 'normal'};
   margin: 0;
   text-decoration: underline;

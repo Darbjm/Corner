@@ -13,7 +13,7 @@ export interface Props {
   color?: ColorTypeKey;
   to?: string;
   size?: 'large';
-  handleClick?: () => void;
+  handleClick?: (e?: any) => void;
   style?: React.CSSProperties;
   oneLine?: boolean
 }

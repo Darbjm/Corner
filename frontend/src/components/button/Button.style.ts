@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {colors, ColorTypeKey} from '../../styles/theme';
+import { PRIMARY_TYPOGRAPHY, SECONDARY_TYPOGRAPHY } from '../../styles/Typography'
 
 export const sizeMap = {
   small: 28,
@@ -13,6 +14,7 @@ export const Button = styled.button<{
   colorType: ColorTypeKey;
   fullWidth: boolean;
   size: Size;
+  font?: 'primary' 
 }>`
   appearance: none;
   cursor: pointer;
@@ -21,6 +23,7 @@ export const Button = styled.button<{
   align-items: center;
   justify-content: center;
   position: relative;
+  font-family: ${({font}): string => font === 'primary' ? PRIMARY_TYPOGRAPHY : SECONDARY_TYPOGRAPHY};
   border: none;
   color: ${({colorType}): string => `${colors[colorType]['contrastText']}`};
   width: ${({fullWidth}): string => (fullWidth ? '100%' : 'fit-content')};

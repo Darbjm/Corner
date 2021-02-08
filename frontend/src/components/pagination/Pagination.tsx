@@ -1,27 +1,32 @@
-import React from 'react'
-import Typography from "../typography"
-import { UL, LI } from './Pagination.style'
+import React, { useState } from 'react'
+import Button from '../button'
+import { PaginationContainter } from './Pagination.style'
 export interface Props {
     foodsPerPage: number;
     totalFoods: number;
-    paginate: (number: number) => void;
+    pageNumber: number;
+    setCurrentPage: (number: number) => void;
 }
 
-const Pagination = ({ foodsPerPage, totalFoods, paginate }: Props) => {
+const Pagination = ({ foodsPerPage, totalFoods, setCurrentPage, pageNumber }: Props) => {
     const pageNumbers = []
+
+    const paginate = (event: React.ChangeEvent<HTMLButtonElement>, pageNumber: number) => {
+        setCurrentPage(pageNumber)
+      }
 
     for (let i = 1; i <= Math.ceil(totalFoods / foodsPerPage); i++) {
         pageNumbers.push(i)
     }
 
     return (
-            <UL>
+            <PaginationContainter>
                 {pageNumbers.map((number: number) => (
-                    <LI key={number} style={{listStyle: 'none'}}>
-                        <Typography style={{ textDecoration: 'none' }} variant='internalLink' handleClick={() => paginate(number)}>{number}</Typography>
-                    </LI>
-                ))}
-            </UL>
+                    pageNumber === number 
+                        ? <Button style={{width: '30px', height: '30px'}} font='primary' key={number} isFullWidth={false} color='primary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button> 
+                        : <Button style={{width: '30px', height: '30px'}} font='primary' key={number} isFullWidth={false} color='secondary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button>
+                        ))}
+            </PaginationContainter>
     )
 }
 

@@ -14,9 +14,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, foodReducer);
 
-// const store = createStore(persistedReducer)
+const store = createStore(persistedReducer)
 
-const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(logger)))
+// const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(logger)))
 
 const persistor = persistStore(store);
 export { store, persistor };

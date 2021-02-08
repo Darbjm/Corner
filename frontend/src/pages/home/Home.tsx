@@ -42,18 +42,18 @@ const Home = () => {
   const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
   const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
 
-  // change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
-
   const margin = '20px'
-
 
   return foods ? (
     <Main>
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='400px'>
-          <TextField elName='search' size='large' onChange={handleChange} color='primary' placeholder='🔎 search' error={searchError}/>
-          <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} paginate={paginate}/>
+          <Div vertical={true} width='100%' height='60%' justifyContent='flex-end'>
+            <TextField elName='search' size='large' onChange={handleChange} color='primary' placeholder='🔎 search' error={searchError}/>
+          </Div>
+          <Div vertical={true} width='100%' height='40%'>
+            <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} setCurrentPage={setCurrentPage} pageNumber={currentPage}/>
+          </Div>
         </Div>
         {currentFoods.map((food: FoodObject) => (
           <Card key={food.name} justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
@@ -62,7 +62,9 @@ const Home = () => {
             <Typography variant="bodySmall">{food.price}</Typography>
           </Card>))}
       </Div>
-      <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} paginate={paginate}/>
+      <Div vertical={true} height='100px' width='100%'>
+        <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} setCurrentPage={setCurrentPage} pageNumber={currentPage}/>
+      </Div>
     </Main>
   ) : (
   <Main>

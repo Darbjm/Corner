@@ -7,17 +7,20 @@ export const Section = styled.section`
   align-items: center;
 `;
 
+export type justify = 'center' | 'flex-end' | 'flex-start';
+
 export const Div = styled.div<{
   vertical: boolean;
   width: string;
   height: string;
+  justifyContent?: justify;
 }>`
   display: flex;
   flex-direction: ${({vertical}): string => vertical ? `column` : `row`};
   width: ${({ width }): string => width};
   height: ${({ height }): string => height};
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: ${({ justifyContent }): justify => justifyContent ? justifyContent : 'center'};;
   align-items: center;
 `;
 

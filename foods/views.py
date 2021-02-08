@@ -67,7 +67,7 @@ class ScrapeSnacksView(APIView):
 
 class AddView(APIView):
 
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, request):
         return Response(status=HTTP_200_OK)
@@ -79,6 +79,34 @@ class AddView(APIView):
             return Response(food.data, status=HTTP_201_CREATED)
         return Response(food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
+
+class LikeView(APIView):
+
+    def get(self, request):
+        return Response(status=HTTP_200_OK)
+
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, pk):
+        print('g', request.data)
+        # user = Food.objects.get(pk=pk)
+        # return print(user)
+        return Response(request.user.id, status=HTTP_201_CREATED)
+
+
+class DislikeView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        return Response(status=HTTP_200_OK)
+
+    def post(self, request):
+        food = FoodSerializer(data=request.data)
+        if food.is_valid():
+            food.save()
+            return Response(food.data, status=HTTP_201_CREATED)
+        return Response(food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 # class RemoveView(APIView):
 

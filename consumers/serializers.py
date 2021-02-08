@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password
 import django.contrib.auth.password_validation as validations
 from django.core.exceptions import ValidationError
 from django.apps import apps
+from foods.models import Food
 User = get_user_model()
 
 
@@ -37,4 +38,15 @@ class NestedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'area_code')
+        fields = ('id', 'username', 'area_code', 'likes', 'dislikes')
+
+
+class FoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Food
+        fields = '__all__'
+
+
+class PopulatedUserSerializer(UserSerializer):
+    likes = FoodSerializer(many=True)
+    dislikes = FoodSerializer(many=True)

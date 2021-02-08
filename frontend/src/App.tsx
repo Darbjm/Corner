@@ -10,7 +10,6 @@ import NavBar from './components/navigation'
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />

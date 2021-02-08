@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter, RouteComponentProps } from "react-router";
+import { useSelector, useDispatch } from 'react-redux';
+
 import Card from '../../components/card';
 import Typography from '../../components/typography';
 import Button from '../../components/button';
-import { Main, Div } from '../../styles/BasicComponents.style'
-import { useSelector, useDispatch } from 'react-redux';
+import { Div } from '../../styles/BasicComponents.style'
+import Main from '../../components/mainPage'
+import auth from '../../lib/auth'
 import { FoodObject } from '../../redux/food/actions' 
 import { removeRandomFood } from '../../redux';
 
-const Swipe = () => {
+const Swipe = ({history}: RouteComponentProps) => {
   const dispatch = useDispatch();
   const randomFoods: FoodObject[] | any = useSelector<{randomFoods: FoodObject[]}>(state => state.randomFoods);
   const [singleFood, setFood] = useState<FoodObject>()
@@ -18,6 +22,9 @@ const Swipe = () => {
   }
 
   const nextFood = () => {
+    if (!auth.isAuthenticated()) {
+      return history.push('/login')
+    }
     setClicks(oldClicks => oldClicks + 1)
     getFood()
   }
@@ -29,7 +36,8 @@ const Swipe = () => {
   return (
     randomFoods.length > 0 ? singleFood ? 
       (<Main>
-      <Card cardWidth='40%' cardHeight='350px'>
+
+      <Card cardWidth='40%' cardHeight='350px' justifyContent='center'>
         <img src={'//' + singleFood.image} style={{maxWidth: '150px', height: '170px', objectFit: 'cover'}} />
         <Typography variant="h4" color="secondary" oneLine={true}>
           {singleFood.name}
@@ -39,10 +47,10 @@ const Swipe = () => {
         </Typography>
         <Div width='100%' height='auto' vertical={false} style={{justifyContent: 'space-evenly'}}>
           <Button buttonSize='medium' color='primary' isFullWidth={false} handleClick={nextFood}>
-            NO
+            Dislike
           </Button>
           <Button buttonSize='medium' color='secondary' isFullWidth={false} handleClick={nextFood}>
-            YES
+            Like
           </Button>
         </Div>
       </Card>
@@ -58,4 +66,4 @@ const Swipe = () => {
   )
 }
 
-export default Swipe;
+export default withRouter(Swipe);

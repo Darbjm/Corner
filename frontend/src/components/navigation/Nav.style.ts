@@ -1,24 +1,18 @@
 import styled from "styled-components";
-
-export const Nav = styled.nav<{
-
-}>`
-    position:fixed;
-    top: 0;
-    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
-    border-radius: 4px;
+import { MARGIN_LEFT, MARGIN_RIGHT } from '../../styles/variables'
+export const Nav = styled.nav`
     width: 100%;
     display: flex;
-    padding: 5px;
     align-items: center;
     background-color: white;
-    z-index: 100;
   `;
 
 export const NavLogo = styled.img`
     max-width: 50px;
     max-height: 50px;
-    margin: 0 20px
+    min-width: 50px;
+    min-height: 50px;
+    margin-left: ${MARGIN_LEFT}
 `
 
 export const NavEnd = styled.div`
@@ -28,8 +22,9 @@ export const NavEnd = styled.div`
 `
 
 export const NavLinks = styled.div`
-    width: 80%;
+    width: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-right: ${MARGIN_RIGHT}
 `

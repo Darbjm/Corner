@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextFieldn } from './TextField.style';
-import {ColorTypeKey} from '../../styles/theme';
+import { ColorTypeKey } from '../../styles/theme';
 import Typography from '../typography';
+import { Div } from '../../styles/BasicComponents.style'
 
 interface ErrorObject {
   username?: string;
@@ -50,7 +51,7 @@ const StandardTextField = ({elName, onChange, color, placeholder, error, size, .
   const errorMessage = getErrorMessage(error, elName)
 
   return (
-    <div>
+    <Div vertical={true} height='auto' width='auto'>
       <TextFieldn
         $textFieldSize={size}
         color={color}
@@ -63,7 +64,7 @@ const StandardTextField = ({elName, onChange, color, placeholder, error, size, .
         type={props.type}
       />
       {errorMessage ? <Typography variant='bodySmall' color='primary'>{errorMessage}</Typography> : null}
-    </div>
+    </Div>
   );
 };
 

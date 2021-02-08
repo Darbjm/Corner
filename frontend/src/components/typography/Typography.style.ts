@@ -89,6 +89,9 @@ export const components = {
     text-decoration: underline;
     color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
     text-align: ${props => (props.align ? props.align : 'left')};
+    :hover {
+      color: ${props => props.color === 'primary' ? SECONDARY : PRIMARY};;
+    }
   `,
   internalLink: styled(Link)<{align: string; $oneLine: boolean; color: ColorTypeKey; font: 'header'; $size: 'large'}>`
   font-size: ${props => props.$size === 'large' ? '24px' : '13px'};
@@ -100,6 +103,9 @@ export const components = {
   text-decoration: underline;
   color: ${props => props.color === 'primary' ? PRIMARY : SECONDARY};
   text-align: ${props => (props.align ? props.align : 'left')};
+  :hover {
+    color: ${props => props.color === 'primary' ? SECONDARY : PRIMARY};;
+  }
 `,
 };
 

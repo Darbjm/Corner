@@ -14,22 +14,13 @@ export const Div = styled.div<{
   width: string;
   height: string;
   justifyContent?: justify;
+  alignItems?: justify;
 }>`
   display: flex;
   flex-direction: ${({vertical}): string => vertical ? `column` : `row`};
   width: ${({ width }): string => width};
   height: ${({ height }): string => height};
   flex-wrap: wrap;
-  justify-content: ${({ justifyContent }): justify => justifyContent ? justifyContent : 'center'};;
-  align-items: center;
+  justify-content: ${({ justifyContent }): justify => justifyContent ? justifyContent : 'center'};
+  align-items: ${({ alignItems }): justify => alignItems ? alignItems : 'center'};;
 `;
-
-export const Main = styled.main`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: #f4f4f4;
-`

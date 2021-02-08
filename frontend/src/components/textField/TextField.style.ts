@@ -7,14 +7,13 @@ export const TextFieldn = styled(TextField)<{
 }>`
    && { 
     margin-bottom: 15px;
-    width: ${({$textFieldSize}): string => $textFieldSize === 'large' ? '400px;' : '166px;'}
+    width: ${({$textFieldSize}): string => $textFieldSize === 'large' ? '400px;' : '200px;'}
    }
    && label {
     font-family: Raleway, sans-serif;
    }
    && input {
       font-size: ${({$textFieldSize}): string => $textFieldSize === 'large' ? '40px;' : 'inherit;'}
-       font-family: Raleway, sans-serif;
       }
    && .Mui-focused {
       color: ${({color}): string => color === 'primary' ? `${COLORS.PRIMARY}` : `${COLORS.SECONDARY}`};

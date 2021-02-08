@@ -6,13 +6,15 @@ export interface Props {
     totalFoods: number;
     pageNumber: number;
     setCurrentPage: (number: number) => void;
+    setSearch: (search: string) => void
 }
 
-const Pagination = ({ foodsPerPage, totalFoods, setCurrentPage, pageNumber }: Props) => {
+const Pagination = ({ foodsPerPage, totalFoods, setCurrentPage, setSearch, pageNumber }: Props) => {
     const pageNumbers = []
 
     const paginate = (event: React.ChangeEvent<HTMLButtonElement>, pageNumber: number) => {
         setCurrentPage(pageNumber)
+        setSearch('')
       }
 
     for (let i = 1; i <= Math.ceil(totalFoods / foodsPerPage); i++) {

@@ -16,8 +16,6 @@ User = get_user_model()
 
 class AllView(APIView):
 
-    # permission_classes = (IsAuthenticated, )
-
     def get(self, request):
         foods = Food.objects.all()
         serializer = FoodSerializer(foods, many=True)
@@ -80,71 +78,43 @@ class AddView(APIView):
         return Response(food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 
-class LikeView(APIView):
-
-    def get(self, request):
-        return Response(status=HTTP_200_OK)
-
-    permission_classes = (IsAuthenticated, )
-
-    def post(self, request, pk):
-        print('g', request.data)
-        # user = Food.objects.get(pk=pk)
-        # return print(user)
-        return Response(request.user.id, status=HTTP_201_CREATED)
-
-
-class DislikeView(APIView):
+class RemoveView(APIView):
 
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
         return Response(status=HTTP_200_OK)
 
-    def post(self, request):
-        food = FoodSerializer(data=request.data)
-        if food.is_valid():
-            food.save()
-            return Response(food.data, status=HTTP_201_CREATED)
-        return Response(food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
-
-# class RemoveView(APIView):
-
-#     permission_classes = (IsAuthenticated, )
-
-#     def get(self, request):
-#         return Response(status=HTTP_200_OK)
-
-#     def delete(self, _request, pk):
-#         try:
-#             food = Food.objects.get(pk=pk)
-#             food.delete()
-#             return Response(status=HTTP_204_NO_CONTENT)
-#         except Food.DoesNotExist:
-#             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
+    def delete(self, _request, pk):
+        try:
+            food = Food.objects.get(pk=pk)
+            food.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+        except Food.DoesNotExist:
+            return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
 
 
-# class EditView(APIView):
+class EditView(APIView):
 
-#     permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
-#     def get(self, request, pk):
-#         try:
-#             food = Food.objects.get(pk=pk)
-#             serialized_food = FoodSerializer(food)
-#             return Response(serialized_food.data)
-#         except User.DoesNotExist:
-#             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
+    def get(self, request, pk):
+        try:
+            food = Food.objects.get(pk=pk)
+            serialized_food = FoodSerializer(food)
+            return Response(serialized_food.data)
+        except User.DoesNotExist:
+            return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
 
-#     def put(self, request, pk):
-#         food = Food.objects.get(pk=pk)
-#         try:
-#             if food.creator.id != request.user.id:
-#                 return Response(status=HTTP_401_UNAUTHORIZED)
-#             updated_food = FoodSerializer(food, data=request.data)
-#             if updated_food.is_valid():
-#                 updated_food.save()
-#                 return Response(updated_food.data, status=HTTP_202_ACCEPTED)
-#             return Response(updated_food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
-#         except User.DoesNotExist:
-#             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
+    def put(self, request, pk):
+        food = Food.objects.get(pk=pk)
+        try:
+            if food.creator.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
+            updated_food = FoodSerializer(food, data=request.data)
+            if updated_food.is_valid():
+                updated_food.save()
+                return Response(updated_food.data, status=HTTP_202_ACCEPTED)
+            return Response(updated_food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+        except User.DoesNotExist:
+            return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)

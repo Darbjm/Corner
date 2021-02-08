@@ -24,10 +24,10 @@ const NavBar = () => {
           <Typography size='large' variant='internalLink' to='/swipe' color='primary'>
             Swipe
           </Typography>
-          <Typography size='large' variant='internalLink' to='/profile' color='primary'>
+          <Typography size='large' variant='internalLink' to={`/profile/${auth.getUser()}`} color='primary'>
             Profile
           </Typography>
-          {isAuth ? <Typography size='large' variant='internalLink' to='/home' color='primary' handleClick={() => auth.logout()}>
+          {isAuth ? <Typography size='large' variant='internalLink' to='/' color='primary' onClick={() => auth.logout()}>
             Logout
           </Typography> : 
           <Typography size='large' variant='internalLink' to='/login' color='primary'>

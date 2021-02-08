@@ -18,7 +18,18 @@ food_data = {
     "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
     "price": "1.89",
     "description": "sweet",
-    "likes": "1",
+    "likes": [1],
+    "dislikes": [],
+    "creator": 1
+}
+
+edit_food_data = {
+    "name": "Sathers Candy Corn",
+    "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
+    "price": "1.89",
+    "description": "sweet",
+    "likes": [],
+    "dislikes": [1],
     "creator": 1
 }
 
@@ -48,41 +59,52 @@ class AddFoodTest(APITestCase):
         self.client.post(reverse('register'), user_data)
         self.login_url = reverse('login')
         self.add_url = reverse('addfood')
+        response = self.client.post(reverse('login'), user_data)
+        self.token = response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
 
     def test_can_view_page_correctly(self):
-        response = self.client.get(self.add_url)
+        response = self.client.get(
+            self.add_url, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 200)
 
     def test_can_add_food(self):
-        response = self.client.post(self.add_url, food_data, format='json')
+        response = self.client.post(
+            self.add_url, food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(
-            response.data, {'id': 1, 'name': 'Sathers Candy Corn 125g', 'image': 'cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406', 'price': '1.89', 'description': 'sweet', 'likes': '1', 'creator': 1})
+            response.data, {'id': 1, 'name': 'Sathers Candy Corn 125g', 'image': 'cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406', 'price': '1.89', 'description': 'sweet', 'likes': [1], "dislikes": [], 'creator': 1})
 
     def test_will_check_food_has_name(self):
         response = self.client.post(
-            self.add_url, bad_name_food_data, format='json')
+            self.add_url, bad_name_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
             response.data['name'][0], 'This field is required.')
 
     def test_will_check_food_has_image(self):
         response = self.client.post(
-            self.add_url, bad_name_food_data, format='json')
+            self.add_url, bad_name_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
             response.data['name'][0], 'This field is required.')
 
     def test_will_not_create_duplicate_name(self):
-        self.client.post(self.add_url, food_data, format='json')
-        response = self.client.post(self.add_url, food_data, format='json')
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+        response = self.client.post(
+            self.add_url, food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
             response.data['name'][0], 'food with this name already exists.')
 
     def test_will_not_create_duplicate_image(self):
-        self.client.post(self.add_url, food_data, format='json')
-        response = self.client.post(self.add_url, different_name_food_data)
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+        response = self.client.post(
+            self.add_url, different_name_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
         self.assertEqual(response.status_code, 422)
         self.assertEqual(
             response.data['image'][0], 'food with this image already exists.')
@@ -94,7 +116,13 @@ class ViewAllFoodTest(APITestCase):
         self.login_url = reverse('login')
         self.all_url = reverse('allfood')
         self.add_url = reverse('addfood')
-        self.client.post(self.add_url, food_data)
+        response = self.client.post(reverse('login'), user_data)
+        self.token = response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
 
     def test_can_view_all_foods(self):
         response = self.client.get(self.all_url)
@@ -107,7 +135,8 @@ class ViewAllFoodTest(APITestCase):
                 "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
                 "price": "1.89",
                 "description": "sweet",
-                "likes": "1",
+                "likes": [1],
+                "dislikes": [],
                 "creator": 1})
 
 
@@ -118,3 +147,53 @@ class ScrapeSnacks(APITestCase):
     def test_can_scape_web_for_snacks(self):
         response = self.client.get(self.snacks_url)
         self.assertEqual(response.data[0]['model'], 'foods.food')
+
+
+class EditFoodTest(APITestCase):
+    def setUp(self):
+        self.client.post(reverse('register'), user_data)
+        self.login_url = reverse('login')
+        self.add_url = reverse('addfood')
+        response = self.client.post(self.login_url, user_data)
+        self.token = response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+
+    def test_will_return_edited_food(self):
+        response = self.client.put(reverse('editfood', kwargs={
+                                   'pk': 1}), edit_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
+        json_response = dict((response.data))
+        self.assertEqual(response.status_code, 202)
+        self.assertEqual(
+            json_response, {
+                "id": 1,
+                "name": "Sathers Candy Corn",
+                "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
+                "price": "1.89",
+                "description": "sweet",
+                "likes": [],
+                "dislikes": [1],
+                "creator": 1
+            })
+
+
+class RemoveFoodTest(APITestCase):
+    def setUp(self):
+        self.client.post(reverse('register'), user_data)
+        self.login_url = reverse('login')
+        self.add_url = reverse('addfood')
+        response = self.client.post(self.login_url, user_data)
+        self.token = response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+
+    def test_will_return_edited_food(self):
+        response = self.client.delete(reverse(
+            'removefood', kwargs={'pk': 1}), **{'HTTP_AUTHORIZATION': BEARER + self.token})
+        self.assertEqual(response.status_code, 204)

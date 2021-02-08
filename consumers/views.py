@@ -48,7 +48,7 @@ class LoginView(APIView):
 
 class UserDetailView(APIView):
 
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
 
     def get(self, _request, pk):
         try:
@@ -85,43 +85,3 @@ class UserEditView(APIView):
             return Response(status=HTTP_204_NO_CONTENT)
         except User.DoesNotExist:
             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
-
-
-class LikeView(APIView):
-
-    def get(self, request):
-        return Response(status=HTTP_200_OK)
-
-    permission_classes = (IsAuthenticated, )
-
-    def put(self, request, pk):
-        if request.user.id != pk:
-            return Response(status=HTTP_401_UNAUTHORIZED)
-        if request.user.id != request.data['id']:
-            return Response(status=HTTP_401_UNAUTHORIZED)
-        user = User.objects.get(pk=pk)
-        serialized_user = NestedUserSerializer(user, data=request.data)
-        if serialized_user.is_valid():
-            serialized_user.save()
-            return Response(serialized_user.data, status=HTTP_201_CREATED)
-        return Response(serialized_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
-
-
-class DislikeView(APIView):
-
-    def get(self, request):
-        return Response(status=HTTP_200_OK)
-
-    permission_classes = (IsAuthenticated, )
-
-    def put(self, request, pk):
-        if request.user.id != pk:
-            return Response(status=HTTP_401_UNAUTHORIZED)
-        if request.user.id != request.data['id']:
-            return Response(status=HTTP_401_UNAUTHORIZED)
-        user = User.objects.get(pk=pk)
-        serialized_user = NestedUserSerializer(user, data=request.data)
-        if serialized_user.is_valid():
-            serialized_user.save()
-            return Response(serialized_user.data, status=HTTP_201_CREATED)
-        return Response(serialized_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)

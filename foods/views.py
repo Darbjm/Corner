@@ -85,9 +85,11 @@ class RemoveView(APIView):
     def get(self, request):
         return Response(status=HTTP_200_OK)
 
-    def delete(self, _request, pk):
+    def delete(self, request, pk):
         try:
             food = Food.objects.get(pk=pk)
+            if food.creator.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
             food.delete()
             return Response(status=HTTP_204_NO_CONTENT)
         except Food.DoesNotExist:

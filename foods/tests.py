@@ -147,13 +147,13 @@ class ViewAllFoodTest(APITestCase):
                 "creator": 1})
 
 
-class ScrapeSnacks(APITestCase):
-    def setUp(self):
-        self.snacks_url = reverse('snacks')
+# class ScrapeSnacks(APITestCase):
+#     def setUp(self):
+#         self.snacks_url = reverse('snacks')
 
-    def test_can_scape_web_for_snacks(self):
-        response = self.client.get(self.snacks_url)
-        self.assertEqual(response.data[0]['model'], 'foods.food')
+#     def test_can_scape_web_for_snacks(self):
+#         response = self.client.get(self.snacks_url)
+#         self.assertEqual(response.data[0]['model'], 'foods.food')
 
 
 class EditFoodTest(APITestCase):
@@ -240,31 +240,31 @@ class LikeDisLikedFoodTest(APITestCase):
         self.assertEqual(response.status_code, 202)
 
 
-class RemoveFoodTest(APITestCase):
-    def setUp(self):
-        self.client.post(reverse('register'), user_data)
-        self.client.post(reverse('register'), different_user_data)
-        self.login_url = reverse('login')
-        self.add_url = reverse('addfood')
-        response = self.client.post(self.login_url, user_data)
-        diff_response = self.client.post(self.login_url, different_user_data)
-        self.token = response.data['token']
-        self.difftoken = diff_response.data['token']
-        user_token = jwt.decode(
-            self.token, settings.SECRET_KEY, algorithms=['HS256'])
-        diff_user_token = jwt.decode(
-            self.token, settings.SECRET_KEY, algorithms=['HS256'])
-        self.user_id = user_token['sub']
-        self.diff_user_id = diff_user_token['sub']
-        self.client.post(self.add_url, food_data, **
-                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+# class RemoveFoodTest(APITestCase):
+#     def setUp(self):
+#         self.client.post(reverse('register'), user_data)
+#         self.client.post(reverse('register'), different_user_data)
+#         self.login_url = reverse('login')
+#         self.add_url = reverse('addfood')
+#         response = self.client.post(self.login_url, user_data)
+#         diff_response = self.client.post(self.login_url, different_user_data)
+#         self.token = response.data['token']
+#         self.difftoken = diff_response.data['token']
+#         user_token = jwt.decode(
+#             self.token, settings.SECRET_KEY, algorithms=['HS256'])
+#         diff_user_token = jwt.decode(
+#             self.token, settings.SECRET_KEY, algorithms=['HS256'])
+#         self.user_id = user_token['sub']
+#         self.diff_user_id = diff_user_token['sub']
+#         self.client.post(self.add_url, food_data, **
+#                          {'HTTP_AUTHORIZATION': BEARER + self.token})
 
-    def test_will_delete_food(self):
-        response = self.client.delete(reverse(
-            'removefood', kwargs={'pk': 1}), **{'HTTP_AUTHORIZATION': BEARER + self.token})
-        self.assertEqual(response.status_code, 204)
+#     def test_will_delete_food(self):
+#         response = self.client.delete(reverse(
+#             'removefood', kwargs={'pk': 1}), **{'HTTP_AUTHORIZATION': BEARER + self.token})
+#         self.assertEqual(response.status_code, 204)
 
-    def test_will_only_allow_food_creator_to_delete_food(self):
-        response = self.client.put(reverse('editfood', kwargs={
-                                   'pk': 1}), edit_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.difftoken})
-        self.assertEqual(response.status_code, 401)
+#     def test_will_only_allow_food_creator_to_delete_food(self):
+#         response = self.client.put(reverse('editfood', kwargs={
+#                                    'pk': 1}), edit_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.difftoken})
+#         self.assertEqual(response.status_code, 401)

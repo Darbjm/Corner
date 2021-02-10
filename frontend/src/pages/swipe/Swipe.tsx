@@ -82,9 +82,8 @@ const Swipe = () => {
                   newFood.dislikes.splice(i, 1); 
               }
           }
-
           // edit new user in database
-          await axios.put(`/api/consumers/edit/${auth.getUser()}/`, newUser, {
+          await axios.put(`/api/consumers/like/${auth.getUser()}/`, newUser, {
               headers: { Authorization: `Bearer ${auth.getToken()}` }
             })
           .then(res => {
@@ -141,7 +140,7 @@ const Swipe = () => {
           }
           
           // edit new user in database
-          await axios.put(`/api/consumers/edit/${auth.getUser()}/`, newUser, {
+          await axios.put(`/api/consumers/like/${auth.getUser()}/`, newUser, {
               headers: { Authorization: `Bearer ${auth.getToken()}` }
             })
           .then(res => {

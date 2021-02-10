@@ -53,8 +53,26 @@ class UserDetailView(APIView):
     def get(self, _request, pk):
         try:
             user = User.objects.get(pk=pk)
-            serialized_user = NestedUserSerializer(user)
+            serialized_user = PopulatedUserSerializer(user)
             return Response(serialized_user.data)
+        except User.DoesNotExist:
+            return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
+
+
+class UserLikeView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request, pk):
+        user = User.objects.get(pk=pk)
+        try:
+            if user.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
+            updated_user = NestedUserSerializer(user, data=request.data)
+            if updated_user.is_valid():
+                updated_user.save()
+                return Response(updated_user.data, status=HTTP_202_ACCEPTED)
+            return Response(updated_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
         except User.DoesNotExist:
             return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
 

@@ -47,6 +47,6 @@ class FoodSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PopulatedUserSerializer(UserSerializer):
+class PopulatedUserSerializer(NestedUserSerializer):
     likes = FoodSerializer(many=True)
     dislikes = FoodSerializer(many=True)

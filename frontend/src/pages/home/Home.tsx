@@ -36,7 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios.get('api/foods/all')
+      await axios.get('/api/foods/all')
       .then(response => {
         dispatch(addFood(response.data));
         dispatch(addRandomFood(response.data))
@@ -44,7 +44,7 @@ const Home = () => {
       .catch(error => {
         console.error(error);
       });
-      await axios.get(`api/consumers/show/${auth.getUser()}`, {
+      await axios.get(`/api/consumers/show/${auth.getUser()}`, {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       .then(response => {

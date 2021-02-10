@@ -4,7 +4,6 @@ import Login from './pages/login';
 import Swipe from './pages/swipe';
 import Home from './pages/home';
 import Register from './pages/register'
-import NavBar from './components/navigation'
 
 
 function App() {

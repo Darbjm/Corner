@@ -1,12 +1,12 @@
-export type AddFood = {type: 'ADD_FOODS'; payload: FoodObject[]};
-export type AddRandomFood = {type: 'ADD_RANDOM_FOODS'; payload: FoodObject[]};
-export type RemoveRandomFood = {type: 'REMOVE_RANDOM_FOODS'; payload: FoodObject[]};
-
+type AddFood = {type: 'ADD_FOODS'; payload: FoodObject[]};
+type AddRandomFood = {type: 'ADD_RANDOM_FOODS'; payload: FoodObject[]};
+type RemoveRandomFood = {type: 'REMOVE_RANDOM_FOODS'; payload: FoodObject[]};
 export interface FoodObject {
   id: number;
   name: string;
   price: string;
-  likes: null | number;
+  likes: number[];
+  dislikes: number[];
   creator: null;
   description: null | string;
   image: string;

@@ -198,6 +198,48 @@ class EditFoodTest(APITestCase):
         self.assertEqual(response.status_code, 401)
 
 
+class LikeDisLikedFoodTest(APITestCase):
+    def setUp(self):
+        self.client.post(reverse('register'), user_data)
+        self.client.post(reverse('register'), different_user_data)
+        self.login_url = reverse('login')
+        self.add_url = reverse('addfood')
+        response = self.client.post(self.login_url, user_data)
+        diff_response = self.client.post(self.login_url, different_user_data)
+        self.token = response.data['token']
+        self.difftoken = diff_response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        diff_user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
+        self.diff_user_id = diff_user_token['sub']
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+
+    def test_will_return_disliked_food(self):
+        response = self.client.put(reverse('likefood', kwargs={
+                                   'pk': 1}), edit_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.token})
+        json_response = dict((response.data))
+        self.assertEqual(response.status_code, 202)
+        self.assertEqual(
+            json_response, {
+                "id": 1,
+                "name": "Sathers Candy Corn",
+                "image": "cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406",
+                "price": "1.89",
+                "description": "sweet",
+                "likes": [],
+                "dislikes": [1],
+                "creator": 1
+            })
+
+    def test_will_allow_anyone_to_edit_food(self):
+        response = self.client.put(reverse('likefood', kwargs={
+                                   'pk': 1}), edit_food_data, **{'HTTP_AUTHORIZATION': BEARER + self.difftoken})
+        self.assertEqual(response.status_code, 202)
+
+
 class RemoveFoodTest(APITestCase):
     def setUp(self):
         self.client.post(reverse('register'), user_data)

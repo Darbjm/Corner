@@ -4,15 +4,15 @@ import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 
-import { foodReducer } from './food/foodReducer';
+import rootReducer from './index';
 
 const persistConfig = {
     blacklist: [],
-    key: 'foods',
+    key: 'all',
     storage
   };
 
-const persistedReducer = persistReducer(persistConfig, foodReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(persistedReducer)
 

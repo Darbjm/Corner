@@ -53,7 +53,7 @@ class UserDetailView(APIView):
     def get(self, _request, pk):
         try:
             user = User.objects.get(pk=pk)
-            serialized_user = PopulatedUserSerializer(user)
+            serialized_user = NestedUserSerializer(user)
             return Response(serialized_user.data)
         except User.DoesNotExist:
             return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)

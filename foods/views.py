@@ -120,3 +120,19 @@ class EditView(APIView):
             return Response(updated_food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
         except User.DoesNotExist:
             return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)
+
+
+class LikeDislikeView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def put(self, request, pk):
+        food = Food.objects.get(pk=pk)
+        try:
+            updated_food = FoodSerializer(food, data=request.data)
+            if updated_food.is_valid():
+                updated_food.save()
+                return Response(updated_food.data, status=HTTP_202_ACCEPTED)
+            return Response(updated_food.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+        except User.DoesNotExist:
+            return Response({'message': 'Not Found'}, status=HTTP_404_NOT_FOUND)

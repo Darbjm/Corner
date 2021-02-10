@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { withRouter, RouteComponentProps } from "react-router";
 
-import Card from '../../components/card';
-import Button from '../../components/button'
 import Main from '../../components/mainPage'
 import { useDispatch, useSelector } from 'react-redux';
-import { addFood, addRandomFood } from '../../redux';
+import { addFood, addRandomFood, addUser } from '../../redux';
 import TextField from '../../components/textField'
 import Typography from '../../components/typography';
 import { Div } from '../../styles/BasicComponents.style'
 import { FoodObject } from '../../redux/food/actions' 
+import { UserObject } from '../../redux/user/actions'
 import Pagination from '../../components/pagination'
+import HomeCard from '../../components/homeCard'
 import auth from '../../lib/auth'
 
-const Home = ({history}: RouteComponentProps) => {
+export interface FoodReducer {
+  foods: FoodObject[],
+  randomFoods: FoodObject[]
+}
+
+export interface UserReducer {
+  user: UserObject
+}
+
+const Home = () => {
   const dispatch = useDispatch();
-  const foods: FoodObject[] | any = useSelector<{foods: any}>(state => state.foods);
+  const foods: FoodObject[] | any = useSelector<{foodReducer: FoodReducer}>(state => state.foodReducer.foods);
+  const user: UserObject | any = useSelector<{userReducer: UserReducer}>(state => state.userReducer.user);
   const [foundItems, setFoundItems] = useState<any>([])
   const [currentPage, setCurrentPage] = useState(1);
   const [isItemsFound, setIsItemsFound] = useState(true)
@@ -35,6 +44,15 @@ const Home = ({history}: RouteComponentProps) => {
       .catch(error => {
         console.error(error);
       });
+      await axios.get(`api/consumers/show/${auth.getUser()}`, {
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
+      })
+      .then(response => {
+        dispatch(addUser(response.data))
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
     getData();
   }, []);
@@ -54,34 +72,21 @@ const Home = ({history}: RouteComponentProps) => {
     return setSearch('')
   };
 
-  const homeCard = (food: FoodObject) => {
-    return (
-      <Card key={food.name} justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
-        <img src={'//' + food.image} style={{maxWidth: '150px', height: '170px', objectFit: 'contain'}} />
-        <Typography variant="h4" align='center'>{food.name}</Typography>
-        <Typography variant="bodySmall">{food.price}</Typography>
-        <Div width='100%' height='auto' vertical={false} style={{justifyContent: 'space-evenly'}}>
-          <Button buttonSize='medium' color='primary' isFullWidth={false} handleClick={voteFood}>
-            Dislike
-          </Button>
-          <Button buttonSize='medium' color='secondary' isFullWidth={false} handleClick={voteFood}>
-            Like
-          </Button>
-        </Div>
-      </Card>
-    )
-  }
-
   const searchedItems = () => {
     if (foundItems.length > 0) {
       return foundItems.map((food: FoodObject) => (
-        homeCard(food)
+        <HomeCard key={food.name} food={food} user={user}/>
         )) 
     }
     return (
       <Typography variant='h1'>No items found</Typography>
     )
   }
+
+  // get current foods
+  const indexOfLastFoods = currentPage * foodsPerPage;
+  const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
+  const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
 
   const displayPagination = (height: string) => {
     if (isItemsFound) return (
@@ -91,20 +96,8 @@ const Home = ({history}: RouteComponentProps) => {
     return (<> </>)
   }
 
-  // get current foods
-  const indexOfLastFoods = currentPage * foodsPerPage;
-  const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
-  const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
 
-  const margin = '20px'
-
-  const voteFood = () => {
-    if (!auth.isAuthenticated()) {
-      return history.push('/login')
-    }
-  }
-
-  return foods ? (
+  return user ? (
     <Main direction='col'>
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='350px'>
@@ -115,7 +108,7 @@ const Home = ({history}: RouteComponentProps) => {
           searchedItems()
           : 
           currentFoods.map((food: FoodObject) => (
-            homeCard(food)
+            <HomeCard key={food.name} food={food} user={user} />
           ))}
       </Div>
       {displayPagination('100px')}
@@ -127,4 +120,4 @@ const Home = ({history}: RouteComponentProps) => {
   )
 };
 
-export default withRouter(Home);
+export default Home;

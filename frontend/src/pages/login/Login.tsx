@@ -19,7 +19,7 @@ const Login = ({history}: RouteComponentProps): JSX.Element => {
   });
 
   const handleSubmit = async () => {
-    axios.post('/api/consumers/login', details)
+    await axios.post('/api/consumers/login', details)
     .then(res => {
       auth.setToken(res.data.token)
       history.push('/')

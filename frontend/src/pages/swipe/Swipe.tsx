@@ -10,10 +10,11 @@ import Main from '../../components/mainPage'
 import auth from '../../lib/auth'
 import { FoodObject } from '../../redux/food/actions' 
 import { removeRandomFood } from '../../redux';
+import { FoodReducer } from '../home/Home'
 
 const Swipe = ({history}: RouteComponentProps) => {
   const dispatch = useDispatch();
-  const randomFoods: FoodObject[] | any = useSelector<{randomFoods: FoodObject[]}>(state => state.randomFoods);
+  const randomFoods: FoodObject[] | any = useSelector<{foodReducer: FoodReducer}>(state => state.foodReducer.randomFoods);
   const [singleFood, setFood] = useState<FoodObject>()
   const [clicks, setClicks] = useState<number>(1)
 

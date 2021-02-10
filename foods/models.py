@@ -5,7 +5,7 @@ User = get_user_model()
 
 
 class Food(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=500, unique=True)
     image = models.CharField(max_length=500, unique=True)
     price = models.CharField(max_length=50, blank=True, null=True)
     description = models.TextField(max_length=500, blank=True, null=True)

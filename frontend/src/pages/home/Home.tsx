@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFood, addRandomFood, addUser } from '../../redux';
 import TextField from '../../components/textField'
 import Typography from '../../components/typography';
-import { Div } from '../../styles/BasicComponents.style'
+import { Div, justify } from '../../styles/BasicComponents.style'
 import { FoodObject } from '../../redux/food/actions' 
 import { UserObject } from '../../redux/user/actions'
 import Pagination from '../../components/pagination'
@@ -88,9 +88,9 @@ const Home = () => {
   const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
   const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
 
-  const displayPagination = (height: string) => {
+  const displayPagination = (height: string, justify: justify) => {
     if (isItemsFound) return (
-      <Div vertical={true} width='100%' height={height}>
+      <Div vertical={true} width='100%' height={height} justifyContent={justify}>
         <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} setCurrentPage={setCurrentPage} pageNumber={currentPage} setSearch={setSearch}/>
       </Div>)
     return (<> </>)
@@ -102,7 +102,7 @@ const Home = () => {
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='350px'>
           <TextField elName='search' size='large' onChange={handleChange} color='primary' placeholder='🔎 search' error={searchError}/>
-          {displayPagination('40%')}
+          {displayPagination('100px', 'flex-end')}
         </Div>
         {search ? 
           searchedItems()
@@ -111,7 +111,7 @@ const Home = () => {
             <HomeCard key={food.name} food={food} user={user} />
           ))}
       </Div>
-      {displayPagination('100px')}
+      {displayPagination('100px', 'center')}
     </Main>
   ) : (
   <Main>

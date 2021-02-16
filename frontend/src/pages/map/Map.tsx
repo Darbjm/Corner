@@ -12,11 +12,14 @@ const Map = () => {
         width: '100vw',
         height: '100vh'
     })
+
+    const token = process.env.REACT_APP_MAPBOX
+
     return (
         <Main direction='col'>
             <Div vertical={false} width='100%' height='100%'>
+            {console.log(token)}
                 <ReactMapGL {...viewport}>
-                    Hello
                 </ReactMapGL>
             </Div>
         </Main>

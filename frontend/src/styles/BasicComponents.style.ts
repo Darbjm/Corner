@@ -15,6 +15,7 @@ export const Div = styled.div<{
   height: string;
   justifyContent?: justify;
   alignItems?: justify;
+  paddingTop?: string;
 }>`
   display: flex;
   flex-direction: ${({vertical}): string => vertical ? `column` : `row`};
@@ -22,5 +23,6 @@ export const Div = styled.div<{
   height: ${({ height }): string => height};
   flex-wrap: wrap;
   justify-content: ${({ justifyContent }): justify => justifyContent ? justifyContent : 'center'};
-  align-items: ${({ alignItems }): justify => alignItems ? alignItems : 'center'};;
+  align-items: ${({ alignItems }): justify => alignItems ? alignItems : 'center'};
+  padding-top: ${({ paddingTop }): string => paddingTop ? paddingTop : '0'};
 `;

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Main from '../../components/mainPage'
 import { useDispatch, useSelector } from 'react-redux';
-import { addFood, addRandomFood, addUser } from '../../redux';
+import { addUser } from '../../redux';
 import TextField from '../../components/textField'
 import Form from '../../components/form'
 import Card from '../../components/card'
@@ -28,12 +28,16 @@ const Home = () => {
   const dispatch = useDispatch();
   const foods: FoodObject[] | any = useSelector<{foodReducer: FoodReducer}>(state => state.foodReducer.foods);
   const user: UserObject | any = useSelector<{userReducer: UserReducer}>(state => state.userReducer.user);
-  const [foundItems, setFoundItems] = useState<any[]>([])
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isItemsFound, setIsItemsFound] = useState(true)
-  const [foodsPerPage, setFoodsPerPage] = useState(20);
+  const [foundLikedItems, setFoundLikedItems] = useState<any[]>([])
+  const [likesCurrentPage, setLikesCurrentPage] = useState(1);
+  const [dislikesCurrentPage, setDislikesCurrentPage] = useState(1);
+  const [isLikedItemsFound, setIsLikedItemsFound] = useState(true)
+  const [isDislikedItemsFound, setIsDislikedItemsFound] = useState(true)
+  const [foundDislikedItems, setFoundDislikedItems] = useState<any[]>([])
+  const [foodsPerPage, setFoodsPerPage] = useState(10);
   const [editError, setErrorEditMessage] = useState<string[]>([]);
   const [search, setSearch] = useState('')
+  const [success, setSuccess] = useState(false)
   const [searchError, setSearchError] = useState({})
   const [errorMessage, setErrorMessage] = useState({});
   const [likes, setLikes] = useState<FoodObject[]>([])
@@ -61,6 +65,7 @@ const Home = () => {
       headers: { Authorization: `Bearer ${auth.getToken()}` }})
     .then(res => {
       dispatch(addUser(res.data))
+      setSuccess(true)
     })
     .catch(err => {
       console.log(err.response)
@@ -70,6 +75,7 @@ const Home = () => {
 
   const handleChangeForm = (name: string, value: string | undefined): void => {
     setErrorMessage({})
+    setSuccess(false)
     setDetails(prevState => ({
       ...prevState,
       [name]: value,
@@ -91,7 +97,7 @@ const Home = () => {
           ['password_confirmation']: ''
         })
         setLikes(data.likes)
-        setDislikes(data.likes)
+        setDislikes(data.dislikes)
       })
       .catch(error => {
         console.error(error);
@@ -103,55 +109,118 @@ const Home = () => {
   const handleChange = (elName: string, value: string | undefined) => {
     if (value) {
       setSearch(value)
-      const results: FoodObject[] = foods.filter((food: FoodObject) => {
+      const likedResults: FoodObject[] = likes.filter((food: FoodObject) => {
         if (food.name.toLowerCase().includes(value.toLowerCase())) return food
       })
-      setIsItemsFound(true)
-      if (results.length === 0) {
-        setIsItemsFound(false)
+
+      setIsLikedItemsFound(true)
+      if (likedResults.length === 0) {
+        setIsLikedItemsFound(false)
       }
-      return setFoundItems(results)
+      setFoundLikedItems(likedResults)
+
+      const dislikedResults: FoodObject[] = dislikes.filter((food: FoodObject) => {
+        if (food.name.toLowerCase().includes(value.toLowerCase())) return food
+      })
+
+      setIsDislikedItemsFound(true)
+      if (dislikedResults.length === 0) {
+        setIsDislikedItemsFound(false)
+      }
+      return setFoundDislikedItems(dislikedResults)
     }
     return setSearch('')
   };
 
-  const searchedLikedItems = () => {
-    if (likes.length > 0) {
-      return likes.map((food: FoodObject) => (
-        <HomeCard key={food.name} food={food} user={user}/>
-        )) 
-    }
+  const searchedItems = () => {
     return (
-      <Typography variant='h1'>No items found</Typography>
+      <Div width='100%' height='auto' vertical={false} paddingTop='60px'>
+        <Typography variant='h2' color='primary'>Likes:</Typography>
+        <Div width='100%' height='auto' vertical={false}>
+          {isLikedItemsFound ?
+            foundLikedItems.map((food: FoodObject) => (
+              <HomeCard key={food.name} food={food} user={user} />
+            ))
+            : 
+            <Div width='100%' height='100px' vertical={true}>
+              <Typography variant='h4' color='primary'>No likes found</Typography> 
+            </Div>
+          }
+        </Div>
+        <Div width='100%' height='auto' vertical={false} paddingTop='60px'>
+          <Typography variant='h2' color='secondary'>Dislikes:</Typography>
+          <Div width='100%' height='auto' vertical={false}>
+          {isDislikedItemsFound ?
+            foundDislikedItems.map((food: FoodObject) => (
+              <HomeCard key={food.name} food={food} user={user} />
+            ))
+            : 
+            <Div width='100%' height='100px' vertical={true}>
+              <Typography variant='h4' color='secondary'>No dislikes found</Typography> 
+            </Div>
+          }
+          </Div>
+        </Div>
+      </Div>
     )
   }
 
-  const searchedDislikedItems = () => {
-    if (likes.length > 0) {
-      return likes.map((food: FoodObject) => (
-        <HomeCard key={food.name} food={food} user={user}/>
-        )) 
-    }
-    return (
-      <Typography variant='h1'>No items found</Typography>
-    )
-  }
+  // get current liked foods
+  const indexOfLikedLastFoods = likesCurrentPage * foodsPerPage;
+  const indexOfLikedFirstFoods = indexOfLikedLastFoods - foodsPerPage;
+  const likesCurrentFoods = likes.slice(indexOfLikedFirstFoods, indexOfLikedLastFoods)
 
-  // get current foods
-  const indexOfLastFoods = currentPage * foodsPerPage;
-  const indexOfFirstFoods = indexOfLastFoods - foodsPerPage;
-  const currentFoods= foods.slice(indexOfFirstFoods, indexOfLastFoods)
+  // get current disliked foods
+  const indexOfDislikedLastFoods = dislikesCurrentPage * foodsPerPage;
+  const indexOfDislikedFirstFoods = indexOfDislikedLastFoods - foodsPerPage;
+  const dislikesCurrentFoods = dislikes.slice(indexOfDislikedFirstFoods, indexOfDislikedLastFoods)
 
-  const displayPagination = (height: string, justify: justify) => {
-    if (isItemsFound) return (
+  const displayLikesPagination = (height: string, justify: justify) => {
+    if (likes) return (
       <Div vertical={true} width='100%' height={height} justifyContent={justify}>
-        <Pagination foodsPerPage={foodsPerPage} totalFoods={foods.length} setCurrentPage={setCurrentPage} pageNumber={currentPage} setSearch={setSearch}/>
+        <Pagination foodsPerPage={foodsPerPage} totalFoods={likes.length} setCurrentPage={setLikesCurrentPage} pageNumber={likesCurrentPage} setSearch={setSearch}/>
+      </Div>)
+    return (<> </>)
+  }
+
+  const displayDislikesPagination = (height: string, justify: justify) => {
+    if (likes) return (
+      <Div vertical={true} width='100%' height={height} justifyContent={justify}>
+        <Pagination foodsPerPage={foodsPerPage} totalFoods={dislikes.length} setCurrentPage={setDislikesCurrentPage} pageNumber={dislikesCurrentPage} setSearch={setSearch}/>
       </Div>)
     return (<> </>)
   }
 
 
-  return user && likes && dislikes ? (
+  const showLikesDislikes = () => {
+    return (
+      <Div width='100%' height='auto' vertical={false} paddingTop='60px'>
+        <Typography variant='h2' color='primary'>Likes:</Typography>
+        <Div width='100%' height='auto' vertical={false}>
+          {displayLikesPagination('40px', 'flex-end')}
+          {
+            likesCurrentFoods.map((food: FoodObject) => (
+              <HomeCard key={food.name} food={food} user={user} />
+            ))
+          }
+        </Div>
+        <Div width='100%' height='auto' vertical={false} paddingTop='60px'>
+          <Typography variant='h2' color='secondary'>Dislikes:</Typography>
+          <Div width='100%' height='auto' vertical={false}>
+            {displayDislikesPagination('40px', 'flex-end')}
+            {
+              dislikesCurrentFoods.map((food: FoodObject) => (
+                <HomeCard key={food.name} food={food} user={user} />
+              ))
+            }
+          </Div>
+        </Div>
+      </Div>
+    )
+  }
+
+
+  return user ? (
     <Main direction='col'>
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='500px'>
@@ -162,6 +231,7 @@ const Home = () => {
                     <TextField error={errorMessage} placeholder='Password' elName='password'type='password' color='primary' onChange={handleChangeForm} />
                     <TextField error={errorMessage} placeholder='Password confirmation' elName='password_confirmation' type='password' color='primary' onChange={handleChangeForm} />
                 </Form>
+                {success ? <Typography variant='h4' color='secondary'>Success!</Typography> : <></>}
             </Card>
             <Div vertical={true} width='100%' height='auto'>
             {editError && editError.map((message: string) => (
@@ -174,19 +244,11 @@ const Home = () => {
             </Div>
         </Div>
         <TextField elName='search' size='large' onChange={handleChange} color='primary' placeholder='🔎 search' error={searchError}/>
-          {displayPagination('100px', 'flex-end')}
         {search ? 
-          searchedLikedItems()
-          : (
-          likes.map((food: FoodObject) => (
-            <HomeCard key={food.name} food={food} user={user} />
-          ))
-          // dislikes.map((food: FoodObject) => (
-          //   <HomeCard key={food.name} food={food} user={user} />
-          // ))
-          )}
+          searchedItems()
+          : 
+          showLikesDislikes()}
       </Div>
-      {displayPagination('100px', 'center')}
     </Main>
   ) : (
   <Main>

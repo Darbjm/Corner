@@ -25,8 +25,8 @@ const Pagination = ({ foodsPerPage, totalFoods, setCurrentPage, setSearch, pageN
             <PaginationContainter>
                 {pageNumbers.map((number: number) => (
                     pageNumber === number 
-                        ? <Button style={{width: '30px', height: '30px'}} font='primary' key={number} isFullWidth={false} color='primary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button> 
-                        : <Button style={{width: '30px', height: '30px'}} font='primary' key={number} isFullWidth={false} color='secondary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button>
+                        ? <Button style={{width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'}} font='primary' key={number} isFullWidth={false} color='primary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button> 
+                        : <Button style={{width: '30px', height: '30px', marginLeft: '5px', marginRight: '5px'}} font='primary' key={number} isFullWidth={false} color='secondary' buttonSize='small' handleClick={(event: React.ChangeEvent<HTMLButtonElement>) => paginate(event, number)}>{number}</Button>
                         ))}
             </PaginationContainter>
     )

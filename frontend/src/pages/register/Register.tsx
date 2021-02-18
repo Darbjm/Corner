@@ -43,7 +43,7 @@ const Register = ({history}: RouteComponentProps): JSX.Element => {
         <Div vertical={true} height='auto' width='auto' alignItems='flex-start'>
           <Form title='Register' buttonName='Submit' buttonColor='primary' handleSubmit={() => handleSubmit()}>
             <TextField error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChange} />
-            <TextField error={errorMessage} placeholder='Area code' elName='area_code'color='primary' onChange={handleChange} />
+            <TextField error={errorMessage} placeholder='Area code (SE1)' elName='area_code'color='primary' onChange={handleChange} />
             <TextField error={errorMessage} placeholder='Password' elName='password'type='password' color='primary' onChange={handleChange} />
             <TextField error={errorMessage} placeholder='Password confirmation' elName='password_confirmation' type='password' color='primary' onChange={handleChange} />
           </Form>

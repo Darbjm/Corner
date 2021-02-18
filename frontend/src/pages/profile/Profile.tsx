@@ -84,7 +84,7 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios.get(`/api/consumers/show/${auth.getUser()}/`, {
+      await axios.get(`/api/consumers/edit/${auth.getUser()}/`, {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       .then(response => {

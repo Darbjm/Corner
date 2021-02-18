@@ -53,7 +53,7 @@ class UserDetailView(APIView):
     def get(self, _request, pk):
         try:
             user = User.objects.get(pk=pk)
-            serialized_user = PopulatedUserSerializer(user)
+            serialized_user = NestedUserSerializer(user)
             return Response(serialized_user.data)
         except User.DoesNotExist:
             return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
@@ -80,6 +80,16 @@ class UserLikeView(APIView):
 class UserEditView(APIView):
 
     permission_classes = (IsAuthenticated, )
+
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            if user.id != request.user.id:
+                return Response(status=HTTP_401_UNAUTHORIZED)
+            serialized_user = PopulatedUserSerializer(user)
+            return Response(serialized_user.data)
+        except User.DoesNotExist:
+            return Response(NOT_FOUND, status=HTTP_404_NOT_FOUND)
 
     def put(self, request, pk):
         user = User.objects.get(pk=pk)

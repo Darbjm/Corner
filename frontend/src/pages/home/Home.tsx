@@ -32,32 +32,31 @@ const Home = () => {
   const [searchError, setErrorMessage] = useState({});
   const [search, setSearch] = useState('')
 
-
-  useEffect(() => {
-    const getData = async () => {
-      await axios.get('/api/foods/all', {
-        headers: { Authorization: '' }
+  const getData = async () => {
+    await axios.get('/api/foods/all', {
+      headers: { Authorization: '' }
+    })
+    .then(response => {
+      dispatch(addFood(response.data));
+      dispatch(addRandomFood(response.data))
+    })
+    .catch(error => {
+      console.error(error.response);
+    });
+    if (auth.getUser()) {
+      await axios.get(`/api/consumers/show/${auth.getUser()}`, {
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       .then(response => {
-        dispatch(addFood(response.data));
-        dispatch(addRandomFood(response.data))
+        dispatch(addUser(response.data))
       })
       .catch(error => {
-        console.error(error.response);
-      });
-      if (auth.getUser()) {
-        await axios.get(`/api/consumers/show/${auth.getUser()}`, {
-          headers: { Authorization: `Bearer ${auth.getToken()}` }
-        })
-        .then(response => {
-          console.log(response.data)
-          dispatch(addUser(response.data))
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      }
+        console.log(error)
+      })
     }
+  }
+
+  useEffect(() => {
     getData();
   }, []);
 
@@ -112,7 +111,7 @@ const Home = () => {
           searchedItems()
           : 
           currentFoods.map((food: FoodObject) => (
-            <HomeCard key={food.name} food={food} user={user} />
+            <HomeCard key={food.name} food={food} user={user} getData={getData}/>
           ))}
       </Div>
       {displayPagination('100px', 'center')}

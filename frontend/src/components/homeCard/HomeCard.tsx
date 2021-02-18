@@ -19,10 +19,11 @@ export interface FoodReducer {
 
 interface Props {
     food: FoodObject,
-    user: UserObject
+    user: UserObject,
+    getData?: () => void 
 }
 
-const HomeCard = ({food, user}: Props) => {
+const HomeCard = ({food, user, getData}: Props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const foods: FoodObject[] | any = useSelector<{foodReducer: FoodReducer}>(state => state.foodReducer.foods);
@@ -35,7 +36,6 @@ const HomeCard = ({food, user}: Props) => {
         if (!auth.isAuthenticated()) {
           return history.push('/login')
         }
-        console.log(newUser)
         event.persist()
         if (event.target.innerHTML === 'Like') {
             dislike = true
@@ -95,8 +95,6 @@ const HomeCard = ({food, user}: Props) => {
         if (event.target.innerHTML === 'Dislike') {
             dislike = true
             like = false
-            dislike = true
-            like = false
 
             // push food id into users dislikes unless its already there
             if (newUser.dislikes.indexOf(food.id) === -1) {
@@ -105,7 +103,7 @@ const HomeCard = ({food, user}: Props) => {
 
             // remove food id from user likes
             for( var i = 0; i < newUser.likes.length; i++){ 
-                if ( newUser.likes[i] === food.id) { 
+                if (newUser.likes[i] === food.id) { 
                     newUser.likes.splice(i, 1); 
                 }
             }
@@ -151,14 +149,14 @@ const HomeCard = ({food, user}: Props) => {
         }
       }
     const margin = '20px'
-    {user.likes.map((number: number) => {
-      if (number === food.id) return (
+    {user.likes.map((item: any) => {
+      if (item === food.id) return (
         like = true,
         dislike = false
       )
     })}
-    {user.dislikes.map((number: number) => {
-      if (number === food.id) return (
+    {user.dislikes.map((item: any) => {
+      if (item === food.id) return (
         like = false,
         dislike = true
       )

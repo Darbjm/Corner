@@ -124,7 +124,7 @@ const Map = () => {
             newDislikesArray.map((areaCode: string) => {
                 if (areaCode === selectedArea) ++newAreaDislikes
             })
-            return {
+            if (newAreaDislikes | newAreaLikes) return {
                 id: item.id,
                 name: item.name,
                 price: item.price,
@@ -134,6 +134,7 @@ const Map = () => {
                 description: item.description,
                 image: item.image
             }
+            return
           })
         const removedUnlikedFoods = filteredFood.filter(food => food !== undefined)
         const sortedLikes = removedUnlikedFoods.sort((a: any, b: any) => {

@@ -8,6 +8,10 @@ const initialState = {
         ...state,
         user: action.payload
       }
+      case 'REMOVE_USER': return {
+        ...state,
+        user: {}
+      }
       default:
         return state;
     }

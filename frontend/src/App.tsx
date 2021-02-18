@@ -9,7 +9,7 @@ import Profile from './pages/profile'
 import Map from './pages/map'
 import FailedPage from './pages/failed'
 import SecureRoute from './lib/SecureRoute'
-import Main from './components/mainPage'
+import { Div } from './styles/BasicComponents.style'
 import Typography from './components/typography'
 
 const getWindowDimensions = () => {
@@ -46,9 +46,9 @@ function App() {
   ) : (
     <BrowserRouter>
       <Switch>
-        <Main>
+        <Div vertical={true} height='100vh' width='100vw'>
           <Typography variant='h1' color='primary'>Device width too small</Typography>
-        </Main>
+        </Div>
       </Switch>
     </BrowserRouter>
     );

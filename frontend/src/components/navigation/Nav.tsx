@@ -3,9 +3,13 @@ import { Nav, NavLogo, NavLinks, NavEnd } from './Nav.style'
 import Typography from '../typography';
 import auth from '../../lib/auth'
 import logo from '../../assets/Corner Logo.svg'
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../../redux';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [isAuth, setAuth] = React.useState(false);
+  
 
   useEffect(() => {
     if (auth.isAuthenticated()) return setAuth(true)
@@ -14,6 +18,7 @@ const NavBar = () => {
   const logout = () => {
     auth.logout()
     setAuth(false)
+    dispatch(removeUser({}))
   }
 
   return (

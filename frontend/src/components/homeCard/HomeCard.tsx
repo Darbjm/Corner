@@ -41,7 +41,7 @@ const HomeCard = ({food, user}: Props) => {
             like = false
 
             // push food id into users likes unless its already there
-            if (newUser.likes.length) {
+            if (newUser.likes) {
               if (newUser.likes.indexOf(food.id) === -1) {
                 newUser.likes.push(food.id);
             }
@@ -57,7 +57,7 @@ const HomeCard = ({food, user}: Props) => {
             }
 
             // push user id into foods likes unless its already there
-            if (newUser.likes.length) {
+            if (newUser.likes) {
               if (newFood.likes.indexOf(user.id) === -1) {
                   newFood.likes.push(user.id)
               }
@@ -104,7 +104,7 @@ const HomeCard = ({food, user}: Props) => {
             like = false
 
             // push food id into users dislikes unless its already there
-            if (newUser.dislikes.length) {
+            if (newUser.dislikes) {
               if (newUser.dislikes.indexOf(food.id) === -1) {
                   newUser.dislikes.push(food.id);
               }
@@ -120,7 +120,7 @@ const HomeCard = ({food, user}: Props) => {
             }
 
             // push user id into foods dislikes unless its already there
-            if (newUser.dislikes.length) {
+            if (newUser.dislikes) {
               if (newFood.dislikes.indexOf(user.id) === -1) {
                   newFood.dislikes.push(user.id)
               }

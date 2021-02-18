@@ -42,7 +42,7 @@ const Map = () => {
 
     const getLatLng = async (postcode: string) => {
         const res = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=${geoToken}`)
-        if (!res.data.results) return
+        if (res.data.results.length) return
         setAreaCodes((prevState: AreaCode[]) => {
             return [...prevState, {
                 postcode: postcode,

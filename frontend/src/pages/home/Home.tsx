@@ -43,18 +43,17 @@ const Home = () => {
     .catch(error => {
       console.error(error.response);
     });
-    if (auth.getUser()) {
-      await axios.get(`/api/consumers/show/${auth.getUser()}`, {
-        headers: { Authorization: `Bearer ${auth.getToken()}` }
-      })
-      .then(response => {
-        console.log(response.data)
-        dispatch(addUser(response.data))
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
+    console.log('here 1')
+    await axios.get(`/api/consumers/show/${auth.getUser()}`, {
+      headers: { Authorization: `Bearer ${auth.getToken()}` }
+    })
+    .then(response => {
+      console.log(response)
+      dispatch(addUser(response.data))
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   useEffect(() => {

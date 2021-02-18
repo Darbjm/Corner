@@ -24,19 +24,12 @@ interface AreaCode {
     long: number,
     lat: number
 }
-interface viewport {
-    latitude: number,
-    longitude: number,
-    zoom: number,
-    width: string,
-    height: string
-}
 
 const Map = () => {
     const [food, setFood] = useState<PopulatedFoodObject[]>([])
     const [areaCodes, setAreaCodes] = useState<AreaCode[]>([])
     const [selectedArea, setSelectedArea] = useState('')
-    const [viewport, setViewport] = useState<viewport>({
+    const [viewport, setViewport] = useState<any>({
         latitude: 51.509865,
         longitude: -0.118092,
         zoom: 12,
@@ -182,11 +175,11 @@ const Map = () => {
             <Div vertical={false} width='70%' height='100%'>
                 <ReactMapGL 
                 onClick={() => setSelectedArea('')}
-                onViewportChange={(viewport: viewport) => {
+                onViewportChange={(viewport: any) => {
                     setViewport(viewport)
                 }}
                 mapboxApiAccessToken={mapToken} 
-                // mapStyle='mapbox://styles/darbjm/ckl838ctb285d17o6spcoufmy'
+                mapStyle='mapbox://styles/darbjm/ckl838ctb285d17o6spcoufmy'
                 {...viewport}
                 >
                     {areaCodes.map(code => (

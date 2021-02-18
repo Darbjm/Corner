@@ -64,8 +64,10 @@ const Swipe = () => {
           }
 
           // remove food id from user dislikes
+          console.log(newUser)
           if (newUser.dislikes) {
-            for( let a = 0; a < newUser.dislikes.length; a++){ 
+            console.log(newUser)
+            for ( let a = 0; a < newUser.dislikes.length; a++){ 
               if ( newUser.dislikes[a] === food.id) { 
                   newUser.dislikes.splice(a, 1); 
               }

@@ -36,7 +36,8 @@ const Swipe = () => {
           dispatch(removeRandomFood(food))
         )
         })
-
+      }
+      if (user.dislikes) {
         user.dislikes.map((number: number) => {
           if (number === food.id) return (
             dispatch(removeRandomFood(food))

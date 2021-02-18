@@ -40,7 +40,7 @@ class LoginView(APIView):
             dt = datetime.now() + timedelta(days=7)
             token = jwt.encode({'sub': user.id, 'exp': int(
                 dt.strftime('%s'))}, settings.SECRET_KEY, algorithm='HS256')
-            # took of .decode('utf-8')
+            # took off .decode('utf-8')
             return Response({'token': token, 'message': f'Welcome back {user.username}'})
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'Invalid Credentials'})

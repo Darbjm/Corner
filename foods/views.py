@@ -6,7 +6,7 @@ from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HT
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
 import jwt
-from .serializers import FoodSerializer
+from .serializers import FoodSerializer, PopulatedFoodSerializer
 from .models import Food
 from django.contrib.auth import get_user_model
 from bs4 import BeautifulSoup
@@ -19,6 +19,14 @@ class AllView(APIView):
     def get(self, request):
         foods = Food.objects.all()
         serializer = FoodSerializer(foods, many=True)
+        return Response(serializer.data)
+
+
+class MapView(APIView):
+
+    def get(self, request):
+        foods = Food.objects.all()
+        serializer = PopulatedFoodSerializer(foods, many=True)
         return Response(serializer.data)
 
 

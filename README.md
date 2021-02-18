@@ -26,7 +26,13 @@ that wanted different foods such as carbon balanced foods.
  
 The app is deployed on Heroku and can be found here: https://wordee-app.herokuapp.com <br> The login
 details are email: test@email password: pass <br> -->
- 
+
+admin
+admin2
+
+admin3
+Simmonds96
+
 <h2 name='brief'>Brief</h2>
  
 - **Build a voting system** Create a web app that allows users to vote on certain foods and local

@@ -147,6 +147,38 @@ class ViewAllFoodTest(APITestCase):
                 "creator": 1})
 
 
+class ViewMapFoodTest(APITestCase):
+    def setUp(self):
+        self.client.post(reverse('register'), user_data)
+        self.login_url = reverse('login')
+        self.all_url = reverse('allfood')
+        self.add_url = reverse('addfood')
+        self.map_url = reverse('mapfood')
+        response = self.client.post(reverse('login'), user_data)
+        self.token = response.data['token']
+        user_token = jwt.decode(
+            self.token, settings.SECRET_KEY, algorithms=['HS256'])
+        self.user_id = user_token['sub']
+        self.client.post(self.add_url, food_data, **
+                         {'HTTP_AUTHORIZATION': BEARER + self.token})
+
+    def test_will_return_populated_food(self):
+        response = self.client.get(self.map_url)
+        json_response = json.loads(json.dumps(response.data))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            json_response[0], {
+                'id': 1,
+                'likes': [{'area_code': 'SE1'}],
+                'dislikes': [],
+                'name': 'Sathers Candy Corn 125g',
+                'image': 'cdn.shopify.com/s/files/1/0342/2388/2379/products/sathers-candy-corn-3-25oz-92g-800x800_750x.png?v=1588789406',
+                'price': '1.89',
+                'description': 'sweet',
+                'creator': 1
+            })
+
+
 # class ScrapeSnacks(APITestCase):
 #     def setUp(self):
 #         self.snacks_url = reverse('snacks')

@@ -38,7 +38,7 @@ const Register = ({history}: RouteComponentProps): JSX.Element => {
 
   return (
     <Main>
-      <Card cardWidth='40%'>
+      <Card cardWidth='40%' vertical={true}>
         <img src={logo} alt='Corner Logo' style={{height: '100px', marginBottom: '40px'}}/>
         <Div vertical={true} height='auto' width='auto' alignItems='flex-start'>
           <Form title='Register' buttonName='Submit' buttonColor='primary' handleSubmit={() => handleSubmit()}>

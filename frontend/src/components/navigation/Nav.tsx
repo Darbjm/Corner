@@ -11,6 +11,11 @@ const NavBar = () => {
     if (auth.isAuthenticated()) return setAuth(true)
   }, []);
 
+  const logout = () => {
+    auth.logout()
+    setAuth(false)
+  }
+
   return (
       <Nav>
         <Typography style={{display: 'flex'}} size='large' variant='internalLink' to='/' color='primary'>
@@ -18,6 +23,9 @@ const NavBar = () => {
         </Typography>
         <NavEnd>
         <NavLinks>
+          <Typography size='large' variant='internalLink' to='/' color='primary'>
+            Home
+          </Typography>
           <Typography size='large' variant='internalLink' to='/map' color='primary'>
             Map
           </Typography>
@@ -27,7 +35,7 @@ const NavBar = () => {
           <Typography size='large' variant='internalLink' to={`/profile/${auth.getUser()}`} color='primary'>
             Profile
           </Typography>
-          {isAuth ? <Typography size='large' variant='internalLink' to='/' color='primary' onClick={() => auth.logout()}>
+          {isAuth ? <Typography size='large' variant='internalLink' to='/' color='primary' onClick={() => logout()}>
             Logout
           </Typography> : 
           <Typography size='large' variant='internalLink' to='/login' color='primary'>

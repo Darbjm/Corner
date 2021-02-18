@@ -35,6 +35,7 @@ const HomeCard = ({food, user}: Props) => {
         if (!auth.isAuthenticated()) {
           return history.push('/login')
         }
+        console.log(newUser)
         event.persist()
         if (event.target.innerHTML === 'Like') {
             dislike = true
@@ -73,7 +74,7 @@ const HomeCard = ({food, user}: Props) => {
                 dispatch(addUser(editedUser))
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response)
               })
 
             // edit newfood in database
@@ -88,7 +89,7 @@ const HomeCard = ({food, user}: Props) => {
                 dispatch(addRandomFood(newFoods))
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response)
               })
         }
         if (event.target.innerHTML === 'Dislike') {
@@ -130,7 +131,7 @@ const HomeCard = ({food, user}: Props) => {
                 dispatch(addUser(editedUser))
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response)
               })
 
             // edit newfood in database
@@ -145,7 +146,7 @@ const HomeCard = ({food, user}: Props) => {
                 dispatch(addRandomFood(newFoods))
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response)
               })
         }
       }
@@ -163,7 +164,7 @@ const HomeCard = ({food, user}: Props) => {
       )
     })}
     return (
-      <Card justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
+      <Card vertical={true} justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
         <img src={'//' + food.image} style={{maxWidth: '150px', height: '170px', objectFit: 'contain'}} />
         <Typography variant="h4" align='center'>{food.name}</Typography>
         <Typography variant="bodySmall">{food.price}</Typography>

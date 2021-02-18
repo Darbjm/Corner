@@ -12,7 +12,6 @@ import { UserObject } from '../../redux/user/actions'
 import Pagination from '../../components/pagination'
 import HomeCard from '../../components/homeCard'
 import auth from '../../lib/auth'
-
 export interface FoodReducer {
   foods: FoodObject[],
   randomFoods: FoodObject[]
@@ -36,23 +35,28 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      await axios.get('/api/foods/all')
+      await axios.get('/api/foods/all', {
+        headers: { Authorization: '' }
+      })
       .then(response => {
         dispatch(addFood(response.data));
         dispatch(addRandomFood(response.data))
       })
       .catch(error => {
-        console.error(error);
+        console.error(error.response);
       });
-      await axios.get(`/api/consumers/show/${auth.getUser()}`, {
-        headers: { Authorization: `Bearer ${auth.getToken()}` }
-      })
-      .then(response => {
-        dispatch(addUser(response.data))
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      if (auth.getUser()) {
+        await axios.get(`/api/consumers/show/${auth.getUser()}`, {
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
+        })
+        .then(response => {
+          console.log(response.data)
+          dispatch(addUser(response.data))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
     }
     getData();
   }, []);

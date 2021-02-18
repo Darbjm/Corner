@@ -169,7 +169,7 @@ const Swipe = () => {
     }
   return food ? (
     <Main>
-      <Card justifyContent='space-evenly' cardWidth='40%' cardHeight='450px'>
+      <Card vertical={true} justifyContent='space-evenly' cardWidth='40%' cardHeight='450px'>
         <img src={'//' + food.image} style={{maxWidth: '300px', height: '300px', objectFit: 'contain'}} />
         <Typography variant="h4" align='center'>{food.name}</Typography>
         <Typography variant="bodySmall">{food.price}</Typography>

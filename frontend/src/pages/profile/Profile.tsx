@@ -26,7 +26,6 @@ export interface UserReducer {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const foods: FoodObject[] | any = useSelector<{foodReducer: FoodReducer}>(state => state.foodReducer.foods);
   const user: UserObject | any = useSelector<{userReducer: UserReducer}>(state => state.userReducer.user);
   const [foundLikedItems, setFoundLikedItems] = useState<any[]>([])
   const [likesCurrentPage, setLikesCurrentPage] = useState(1);

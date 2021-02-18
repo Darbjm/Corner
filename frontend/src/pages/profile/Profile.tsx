@@ -223,7 +223,7 @@ const Home = () => {
     <Main direction='col'>
       <Div vertical={false} width='100%' height='100%'>
         <Div vertical={true} width='100%' height='500px'>
-            <Card cardWidth='40%' cardHeight='70%' justifyContent='center'>
+            <Card cardWidth='40%' cardHeight='70%' justifyContent='center' vertical={true}>
                 <Form title='Edit Info' buttonName='Submit' buttonColor='primary' handleSubmit={() => handleSubmit()}>
                     <TextField value={details.username} error={errorMessage} placeholder='Username' elName='username' color='primary' onChange={handleChangeForm} />
                     <TextField value={details.area_code} error={errorMessage} placeholder='Area code' elName='area_code'color='primary' onChange={handleChangeForm} />

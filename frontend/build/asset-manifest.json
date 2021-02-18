@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.872938e4.chunk.css",
+    "main.js": "/static/js/main.4330d558.chunk.js",
+    "main.js.map": "/static/js/main.4330d558.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3664d234.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3664d234.js.map",
+    "static/js/2.54b8525c.chunk.js": "/static/js/2.54b8525c.chunk.js",
+    "static/js/2.54b8525c.chunk.js.map": "/static/js/2.54b8525c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.15f30a9383bf8ecfc51f92b36ffa9b83.js": "/precache-manifest.15f30a9383bf8ecfc51f92b36ffa9b83.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.872938e4.chunk.css.map": "/static/css/main.872938e4.chunk.css.map",
+    "static/js/2.54b8525c.chunk.js.LICENSE.txt": "/static/js/2.54b8525c.chunk.js.LICENSE.txt",
+    "static/media/Corner Logo.svg": "/static/media/Corner Logo.3733aae3.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3664d234.js",
+    "static/js/2.54b8525c.chunk.js",
+    "static/css/main.872938e4.chunk.css",
+    "static/js/main.4330d558.chunk.js"
+  ]
+}

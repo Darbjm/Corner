@@ -27,11 +27,8 @@ that wanted different foods such as carbon balanced foods.
 The app is deployed on Heroku and can be found here: https://wordee-app.herokuapp.com <br> The login
 details are email: test@email password: pass <br> -->
 
-admin
-admin2
-
-admin3
-Simmonds96
+James
+zuF22GXCG1cy
 
 <h2 name='brief'>Brief</h2>
  

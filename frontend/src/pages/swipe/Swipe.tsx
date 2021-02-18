@@ -64,10 +64,12 @@ const Swipe = () => {
           }
 
           // remove food id from user dislikes
-          for( let a = 0; a < newUser.dislikes.length; a++){ 
+          if (newUser.dislikes) {
+            for( let a = 0; a < newUser.dislikes.length; a++){ 
               if ( newUser.dislikes[a] === food.id) { 
                   newUser.dislikes.splice(a, 1); 
               }
+            }
           }
 
           // push user id into foods likes unless its already there
@@ -78,10 +80,12 @@ const Swipe = () => {
           }
 
           // remove user id from food dislikes
-          for( let b = 0; b < newFood.dislikes.length; b++){ 
-              if ( newFood.dislikes[b] === user.id) { 
-                  newFood.dislikes.splice(b, 1); 
-              }
+          if (newUser.dislikes) {
+            for( let b = 0; b < newFood.dislikes.length; b++){ 
+                if ( newFood.dislikes[b] === user.id) { 
+                    newFood.dislikes.splice(b, 1); 
+                }
+            }
           }
           // edit new user in database
           await axios.put(`/api/consumers/like/${auth.getUser()}/`, newUser, {
@@ -120,10 +124,12 @@ const Swipe = () => {
           }
 
           // remove food id from user likes
-          for( let c = 0; c < newUser.likes.length; c++){ 
-              if ( newUser.likes[c] === food.id) { 
-                  newUser.likes.splice(c, 1); 
-              }
+          if (newUser.likes) {
+            for( let c = 0; c < newUser.likes.length; c++){ 
+                if ( newUser.likes[c] === food.id) { 
+                    newUser.likes.splice(c, 1); 
+                }
+            }
           }
 
           // push user id into foods dislikes unless its already there
@@ -134,10 +140,12 @@ const Swipe = () => {
           }
 
           // remove user id from food likes
-          for( let i = 0; i < newFood.likes.length; i++){ 
-              if ( newFood.likes[i] === user.id) { 
-                  newFood.likes.splice(i, 1); 
-              }
+          if (newUser.likes) {
+            for( let i = 0; i < newFood.likes.length; i++){ 
+                if ( newFood.likes[i] === user.id) { 
+                    newFood.likes.splice(i, 1); 
+                }
+            }
           }
           
           // edit new user in database

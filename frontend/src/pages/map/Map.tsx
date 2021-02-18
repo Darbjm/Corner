@@ -186,7 +186,7 @@ const Map = () => {
                     setViewport(viewport)
                 }}
                 mapboxApiAccessToken={mapToken} 
-                mapStyle='mapbox://styles/darbjm/ckl838ctb285d17o6spcoufmy'
+                // mapStyle='mapbox://styles/darbjm/ckl838ctb285d17o6spcoufmy'
                 {...viewport}
                 >
                     {areaCodes.map(code => (

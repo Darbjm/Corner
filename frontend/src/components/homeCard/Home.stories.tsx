@@ -1,5 +1,7 @@
 import HomeCard from './HomeCard';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 export default {
   title: 'HomeCard',
@@ -28,7 +30,9 @@ const food = {
 export const HomeCardS = () => {
   return (
     <div style={{marginBottom: 10, display: 'flex', flexDirection: 'row'}}>
-      <HomeCard food={food} user={user} />
+          <Provider store={store}>
+            <HomeCard food={food} user={user} />
+          </Provider>
     </div>
   );
 };

@@ -148,18 +148,22 @@ const HomeCard = ({food, user}: Props) => {
         }
       }
     const margin = '20px'
-    user.likes.map((item: any) => {
-      if (item === food.id) return (
-        like = true,
-        dislike = false
-      )
-    })
-    user.dislikes.map((item: any) => {
-      if (item === food.id) return (
-        like = false,
-        dislike = true
-      )
-    })
+    if (user.likes) {
+      user.likes.map((item: any) => {
+        if (item === food.id) return (
+          like = true,
+          dislike = false
+        )
+      })
+    }
+    if (user.dislikes) {
+      user.dislikes.map((item: any) => {
+        if (item === food.id) return (
+          like = false,
+          dislike = true
+        )
+      })
+    }
     return (
       <Card vertical={true} justifyContent='space-evenly' cardWidth='200px' cardHeight='300px' marginBottom={margin} marginLeft={margin} marginRight={margin} marginTop={margin}>
         <img src={'//' + food.image} alt={food.name} style={{maxWidth: '150px', height: '170px', objectFit: 'contain'}} />

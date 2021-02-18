@@ -69,13 +69,32 @@ Allow shops to make a profile and show their contents<br>
 <h2 name='wins'>Wins</h2>
 <h3>Storybook</h3>
 Using storybook to check my components and share with other stakeholders was a great thing to use. Making changes much easier and quicker
-<br> <br> <br> <img src='readme/Storybook' width='600'>
+<br> <br> <br> <img src='readme/Storybook.png' width='600'>
 <br>
 <br>
 <h3>TypeScript</h3>
 TypeScript was a new language for me and understanding and getting to grips with types was really useful and interesting to me.
 <br>
 <br>
+
+    function hasKey<O>(error: O, elName: keyof any): elName is keyof O {
+        return elName in error
+    }
+
+    const getErrorMessage = (error: ErrorObject, elName: string) => {
+    if (hasKey(error, elName)) {
+    if (error[elName]) {
+    isError = true
+    return error[elName]
+    }
+    }
+    return null
+    }
+    ```
+
+<br>
+<br>
+
 <h2 name='blockers'>Blockers</h2>
 <h3>Sets</h3>
 TypeScript doesn't yet allow for sets.
@@ -92,3 +111,4 @@ Mapping users areacodes onto the map sometimes caused an error if the google API
 <br>
 <h2 name='learn'>Future learnings</h2>
 • Use TypeScript type assertions.<br>
+```

@@ -26,9 +26,6 @@ export interface Props {
 }
 
 // Solution found on https://dev.to/kingdaro/indexing-objects-in-typescript-1cgi
-function hasKey<O>(error: O, elName: keyof any): elName is keyof O {
-  return elName in error
-}
 
 const StandardTextField = ({elName, onChange, color, placeholder, error, size, ...props}: Props): JSX.Element => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -37,6 +34,10 @@ const StandardTextField = ({elName, onChange, color, placeholder, error, size, .
   };
 
   let isError = false
+
+  function hasKey<O>(error: O, elName: keyof any): elName is keyof O {
+    return elName in error
+  }
 
   const getErrorMessage = (error: ErrorObject, elName: string) => {
     if (hasKey(error, elName)) {

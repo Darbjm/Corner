@@ -56,7 +56,7 @@ const Swipe = () => {
       if (event.target.innerHTML === 'Like') {
 
           // push food id into users likes unless its already there
-          if (newUser.likes.length) {
+          if (newUser.likes) {
             if (newUser.likes.indexOf(food.id) === -1) {
                 newUser.likes.push(food.id);
             }
@@ -70,7 +70,7 @@ const Swipe = () => {
           }
 
           // push user id into foods likes unless its already there
-          if (newUser.likes.length) {
+          if (newUser.likes) {
             if (newFood.likes.indexOf(user.id) === -1) {
                 newFood.likes.push(user.id)
             }
@@ -112,7 +112,7 @@ const Swipe = () => {
       if (event.target.innerHTML === 'Dislike') {
 
           // push food id into users dislikes unless its already there
-          if (newUser.dislikes.length) {
+          if (newUser.dislikes) {
             if (newUser.dislikes.indexOf(food.id) === -1) {
                 newUser.dislikes.push(food.id);
             }
@@ -126,7 +126,7 @@ const Swipe = () => {
           }
 
           // push user id into foods dislikes unless its already there
-          if (newUser.dislikes.length) {
+          if (newUser.dislikes) {
             if (newFood.dislikes.indexOf(user.id) === -1) {
                 newFood.dislikes.push(user.id)
             }

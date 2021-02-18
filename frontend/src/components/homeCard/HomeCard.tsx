@@ -41,8 +41,10 @@ const HomeCard = ({food, user}: Props) => {
             like = false
 
             // push food id into users likes unless its already there
-            if (newUser.likes.indexOf(food.id) === -1) {
+            if (newUser.likes.length) {
+              if (newUser.likes.indexOf(food.id) === -1) {
                 newUser.likes.push(food.id);
+            }
             }
 
             // remove food id from user dislikes
@@ -53,8 +55,10 @@ const HomeCard = ({food, user}: Props) => {
             }
 
             // push user id into foods likes unless its already there
-            if (newFood.likes.indexOf(user.id) === -1) {
-                newFood.likes.push(user.id)
+            if (newUser.likes.length) {
+              if (newFood.likes.indexOf(user.id) === -1) {
+                  newFood.likes.push(user.id)
+              }
             }
 
             // remove user id from food dislikes
@@ -96,8 +100,10 @@ const HomeCard = ({food, user}: Props) => {
             like = false
 
             // push food id into users dislikes unless its already there
-            if (newUser.dislikes.indexOf(food.id) === -1) {
-                newUser.dislikes.push(food.id);
+            if (newUser.dislikes.length) {
+              if (newUser.dislikes.indexOf(food.id) === -1) {
+                  newUser.dislikes.push(food.id);
+              }
             }
 
             // remove food id from user likes
@@ -108,8 +114,10 @@ const HomeCard = ({food, user}: Props) => {
             }
 
             // push user id into foods dislikes unless its already there
-            if (newFood.dislikes.indexOf(user.id) === -1) {
-                newFood.dislikes.push(user.id)
+            if (newUser.dislikes.length) {
+              if (newFood.dislikes.indexOf(user.id) === -1) {
+                  newFood.dislikes.push(user.id)
+              }
             }
 
             // remove user id from food likes

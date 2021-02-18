@@ -64,6 +64,7 @@ const Swipe = () => {
           }
 
           // remove food id from user dislikes
+          console.log(user)
           console.log(newUser)
           if (newUser.dislikes) {
             console.log(newUser)

@@ -48,6 +48,7 @@ const Home = () => {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       .then(response => {
+        console.log(response.data)
         dispatch(addUser(response.data))
       })
       .catch(error => {

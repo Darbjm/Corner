@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../button'
 import { PaginationContainter } from './Pagination.style'
 export interface Props {

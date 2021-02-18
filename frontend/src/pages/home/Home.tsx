@@ -111,7 +111,7 @@ const Home = () => {
           searchedItems()
           : 
           currentFoods.map((food: FoodObject) => (
-            <HomeCard key={food.name} food={food} user={user} getData={getData}/>
+            <HomeCard key={food.name} food={food} user={user} />
           ))}
       </Div>
       {displayPagination('100px', 'center')}

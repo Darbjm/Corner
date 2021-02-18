@@ -13,7 +13,7 @@ import Main from './components/mainPage'
 import Typography from './components/typography'
 
 const getWindowDimensions = () => {
-  const { innerWidth: width, innerHeight: height } = window;
+  const { innerWidth: width } = window;
   return width
 }
 

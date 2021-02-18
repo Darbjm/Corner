@@ -64,18 +64,18 @@ const Home = () => {
       headers: { Authorization: `Bearer ${auth.getToken()}` }})
     .then(res => {
       dispatch(addUser(res.data))
-      setSuccess(true)
+      return setSuccess(true)
     })
     .catch(err => {
       console.log(err.response)
-      setErrorEditMessage(Object.values(err.response.data))
+      return setErrorEditMessage(Object.values(err.response.data))
     })
   };
 
   const handleChangeForm = (name: string, value: string | undefined): void => {
     setErrorMessage({})
     setSuccess(false)
-    setDetails(prevState => ({
+    return setDetails(prevState => ({
       ...prevState,
       [name]: value,
     }));

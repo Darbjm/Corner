@@ -70,7 +70,7 @@ const Map = () => {
                 var bDislikes = b.dislikes.length;
                 
                 // if the likes are the same sort place the one with the most dislikes below
-                if(aLikes == bLikes)
+                if(aLikes === bLikes)
                 {
                     return (aDislikes < bDislikes) ? -1 : (aDislikes > bDislikes) ? 1 : 0;
                 }
@@ -90,7 +90,7 @@ const Map = () => {
                 cleanAreaCodes.push(code.area_code.toUpperCase())
             })
             const uniqueAreaCodes = cleanAreaCodes.filter(function(item, pos, self) {
-                return self.indexOf(item) == pos;
+                return self.indexOf(item) === pos;
             })
             return uniqueAreaCodes
           })
@@ -144,7 +144,7 @@ const Map = () => {
             var bDislikes = b.dislikes.length;
             
             // if the likes are the same sort place the one with the most dislikes below
-            if(aLikes == bLikes)
+            if(aLikes === bLikes)
             {
                 return (aDislikes < bDislikes) ? -1 : (aDislikes > bDislikes) ? 1 : 0;
             }

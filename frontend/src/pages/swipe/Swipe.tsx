@@ -27,8 +27,6 @@ const Swipe = () => {
   const user: UserObject | any = useSelector<{userReducer: UserReducer}>(state => state.userReducer.user)
   const newUser: UserObject  = {...user}
   const newFood: FoodObject = {...food}
-  let like = false
-  let dislike = false
 
   useEffect(() => {
     const findUnseenFood = async () => {
@@ -56,8 +54,6 @@ const Swipe = () => {
       }
       event.persist()
       if (event.target.innerHTML === 'Like') {
-          dislike = true
-          like = false
 
           // push food id into users likes unless its already there
           if (newUser.likes.indexOf(food.id) === -1) {
@@ -65,9 +61,9 @@ const Swipe = () => {
           }
 
           // remove food id from user dislikes
-          for( var i = 0; i < newUser.dislikes.length; i++){ 
-              if ( newUser.dislikes[i] === food.id) { 
-                  newUser.dislikes.splice(i, 1); 
+          for( let a = 0; a < newUser.dislikes.length; a++){ 
+              if ( newUser.dislikes[a] === food.id) { 
+                  newUser.dislikes.splice(a, 1); 
               }
           }
 
@@ -77,9 +73,9 @@ const Swipe = () => {
           }
 
           // remove user id from food dislikes
-          for( var i = 0; i < newFood.dislikes.length; i++){ 
-              if ( newFood.dislikes[i] === user.id) { 
-                  newFood.dislikes.splice(i, 1); 
+          for( let b = 0; b < newFood.dislikes.length; b++){ 
+              if ( newFood.dislikes[b] === user.id) { 
+                  newFood.dislikes.splice(b, 1); 
               }
           }
           // edit new user in database
@@ -100,7 +96,7 @@ const Swipe = () => {
             })
           .then(res => {
               const newFoods: FoodObject[] = [...foods]
-              const foundIndex = newFoods.findIndex(food => food.id == res.data.id);
+              const foundIndex = newFoods.findIndex(food => food.id === res.data.id);
               newFoods[foundIndex] = res.data;
               dispatch(addFood(newFoods))
               dispatch(addRandomFood(newFoods))
@@ -110,10 +106,6 @@ const Swipe = () => {
             })
       }
       if (event.target.innerHTML === 'Dislike') {
-          dislike = true
-          like = false
-          dislike = true
-          like = false
 
           // push food id into users dislikes unless its already there
           if (newUser.dislikes.indexOf(food.id) === -1) {
@@ -121,9 +113,9 @@ const Swipe = () => {
           }
 
           // remove food id from user likes
-          for( var i = 0; i < newUser.likes.length; i++){ 
-              if ( newUser.likes[i] === food.id) { 
-                  newUser.likes.splice(i, 1); 
+          for( let c = 0; c < newUser.likes.length; c++){ 
+              if ( newUser.likes[c] === food.id) { 
+                  newUser.likes.splice(c, 1); 
               }
           }
 
@@ -133,7 +125,7 @@ const Swipe = () => {
           }
 
           // remove user id from food likes
-          for( var i = 0; i < newFood.likes.length; i++){ 
+          for( let i = 0; i < newFood.likes.length; i++){ 
               if ( newFood.likes[i] === user.id) { 
                   newFood.likes.splice(i, 1); 
               }
@@ -157,7 +149,7 @@ const Swipe = () => {
             })
           .then(res => {
               const newFoods: FoodObject[] = [...foods]
-              const foundIndex = newFoods.findIndex(food => food.id == res.data.id);
+              const foundIndex = newFoods.findIndex(food => food.id === res.data.id);
               newFoods[foundIndex] = res.data;
               dispatch(addFood(newFoods))
               dispatch(addRandomFood(newFoods))
@@ -170,7 +162,7 @@ const Swipe = () => {
   return food ? (
     <Main>
       <Card vertical={true} justifyContent='space-evenly' cardWidth='40%' cardHeight='450px'>
-        <img src={'//' + food.image} style={{maxWidth: '300px', height: '300px', objectFit: 'contain'}} />
+        <img src={'//' + food.image} alt={food.name} style={{maxWidth: '300px', height: '300px', objectFit: 'contain'}} />
         <Typography variant="h4" align='center'>{food.name}</Typography>
         <Typography variant="bodySmall">{food.price}</Typography>
         <Div width='100%' height='auto' vertical={false} style={{justifyContent: 'space-evenly'}}>

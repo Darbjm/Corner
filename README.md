@@ -46,7 +46,7 @@ and bring on other engineers, later on, <br>
 
 <h2 name='app'>App</h2>
 
-The user will be able to search all items by name, and then either dislike or like those items.<br> <br> <br> <img src='readme/search.gif' width='600'> <br> <br> <br>
+The user will be able to search all items by name, and then either dislike or like those items.<br> <br> <br> <img src='readme/Search.gif' width='600'> <br> <br> <br>
 The user will also be able to search through the lists of items using pagination.<br> <br> <br> <img src='readme/Pagination.gif' width='600'> <br> <br> <br>
 The user will be able to search their profile for their likes and dislikes.<br> <br> <br>
 <img src='readme/Profile_search.gif' width='600'> <br> <br> <br>
